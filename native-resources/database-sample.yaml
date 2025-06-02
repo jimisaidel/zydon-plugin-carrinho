@@ -1,7 +1,8 @@
 id: ""
 name: ""
-type: ""
+tag: ""
 fields:
     - name: ""
+      description: ""
       type: ""
-      required: false
+      primary_key: true

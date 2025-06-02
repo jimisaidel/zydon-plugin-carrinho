@@ -1,0 +1,17 @@
+auth:
+  type: "basic"
+  client_id: ""
+  callback_uri: ""
+entry_points:
+  - entry_point_key: ""
+    artifact_type: ""
+    artifact_id: ""
+  - entry_point_key: ""
+    artifact_type: ""
+    artifact_id: ""
+permissions:
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
