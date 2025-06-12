@@ -1,14 +1,23 @@
 import { PropsWithChildren } from "react";
 
+import Common from "@zydon/common/components/Common";
+
+import Horizontal from "./layouts/Horizontal";
+import Mini from "./layouts/Mini";
+import Vertical from "./layouts/Vertical";
 import { PortalProps } from "./props";
-import General from "./General";
-import { AppType } from "../props";
-import Checkout from "./Checkout";
 
-const Portal = ({ children, mode }: PropsWithChildren<PortalProps>) => {
-  const Container = mode === AppType.global ? General : Checkout;
+const Portal = ({ children, layout }: PropsWithChildren<PortalProps>) => {
+  const layouts = {
+    horizontal: Horizontal,
+    full: Vertical,
+    mini: Mini,
+  };
 
-  return <Container>{children}</Container>;
+  const Layout = layouts[layout];
+  console.log({ Layout, layout });
+
+  return <Layout>{children}</Layout>;
 };
 
 export default Portal;
