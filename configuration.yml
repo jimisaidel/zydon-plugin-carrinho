@@ -4,11 +4,11 @@ auth:
   callback_uri: ""
 entry_points:
   - entry_point_key: ""
-    artifact_type: ""
     artifact_id: ""
   - entry_point_key: ""
-    artifact_type: ""
     artifact_id: ""
+installation_endpoint:
+  url: ""
 permissions:
   - ""
   - ""
