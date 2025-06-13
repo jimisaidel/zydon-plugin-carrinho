@@ -10,8 +10,8 @@ export const APPS: App[] = [
   {
     id: "1",
     // tem que seguir esse padrão
-    tag: "whatsapp-button",
-    url: "http://localhost:4177/app/app.js",
+    tag: "zydon-plugin-name",
+    url: "http://localhost:4177/apps/zydon-plugin-name/app/app.js",
     type: "global",
   },
   {
