@@ -3,6 +3,8 @@ import { Authed } from '@zydon/auth';
 
 import router from './routes';
 
+import './style.css';
+
 const Configs = () => {
   return (
     <Authed

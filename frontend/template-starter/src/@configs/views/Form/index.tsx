@@ -103,7 +103,7 @@ const Form = () => {
         <Autocomplete
           name="opcao"
           id="opcao"
-          label="Oção"
+          label="Opções"
           options={[
             {
               label: 'Opção um',
