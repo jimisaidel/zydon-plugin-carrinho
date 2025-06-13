@@ -1,20 +1,18 @@
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { RouterProvider } from 'react-router-dom';
+import { Authed } from '@zydon/auth';
+
+import router from './routes';
 
 const Configs = () => {
   return (
-    <Stack p={3}>
-      <Stack>
-        <Typography variant="h4">Configuração do seu App</Typography>
-
-        <Typography variant="body2" color="text.secondary">
-          Vamos configurar seu App agora mesmo?
-        </Typography>
-
-        <Button variant="contained">Configurar</Button>
-      </Stack>
-    </Stack>
+    <Authed
+      mode={import.meta.env.VITE_MODE}
+      username={import.meta.env.VITE_USERNAME}
+      password={import.meta.env.VITE_PASSWORD}
+      fallback={<>Acesso negado</>}
+    >
+      <RouterProvider router={router} />
+    </Authed>
   );
 };
 

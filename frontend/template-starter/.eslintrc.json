@@ -42,7 +42,7 @@
             "groups": [
               ["^react", "^@?\\w"],
               ["^tests(/.*|$)", "^__tests__(/.*|$)", ".*\\.spec\\.(ts|tsx)$"],
-              ["^(@|assets|components|guards|hooks|layouts|models|routes|services|store|utils|types|views)(/.*|$)"],
+              ["^(@|@app|@configs|assets|components|configs|guards|hooks|layouts|models|routes|services|store|utils|types|views)(/.*|$)"],
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
               ["^.+\\.?(css)$"]

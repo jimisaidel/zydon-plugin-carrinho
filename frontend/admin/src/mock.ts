@@ -12,10 +12,10 @@ interface App {
 
 export const APPS: App[] = [
   {
-    id: "1",
+    id: "zydon-plugin-name",
     name: "Botão zapzap",
     description: "Botão flutuante com link para WhatsApp",
-    url: "http://localhost:4177/assets/remoteEntry.js",
+    url: "http://localhost:4177/apps/zydon-plugin-name/assets/remoteEntry.js",
     icon: "WHATSAPP",
   },
   {

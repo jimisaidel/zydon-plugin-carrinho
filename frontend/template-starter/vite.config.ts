@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+import packageJson from './package.json';
+
+const BASE_PATH = `/apps/${packageJson.name}`;
+
 export default defineConfig(({ mode }) => {
   if (mode === 'app') {
     return {
@@ -21,6 +25,7 @@ export default defineConfig(({ mode }) => {
     };
   } else {
     return {
+      base: BASE_PATH,
       preview: {
         port: 4177,
         strictPort: true,
@@ -41,7 +46,6 @@ export default defineConfig(({ mode }) => {
             '@mui/material',
             '@mui/x-data-grid-premium',
             '@mui/x-date-pickers-pro',
-            '@zydon/common',
             'react',
             'react-dom',
 

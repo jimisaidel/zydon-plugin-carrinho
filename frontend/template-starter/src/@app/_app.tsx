@@ -27,7 +27,7 @@ class App extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['prop1', 'prop2']; // Liste os atributos que você quer observar
+    return ['primaryColor']; // Liste os atributos que você quer observar
   }
 
   attributeChangedCallback(
@@ -42,8 +42,7 @@ class App extends HTMLElement {
 
   render() {
     const props = {
-      prop1: this.getAttribute('prop1'),
-      prop2: this.getAttribute('prop2'),
+      primaryColor: this.getAttribute('primaryColor') || '#000000',
     };
     // eslint-disable-next-line react/no-deprecated
     ReactDOM.render(<Plugin {...props} />, this.mountPoint);
