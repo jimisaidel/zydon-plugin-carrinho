@@ -30,7 +30,7 @@ const pages = [
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const Main = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -191,4 +191,4 @@ const ResponsiveAppBar = () => {
     </Stack>
   );
 };
-export default ResponsiveAppBar;
+export default Main;
