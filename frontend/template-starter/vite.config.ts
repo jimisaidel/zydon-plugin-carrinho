@@ -40,12 +40,6 @@ export default defineConfig(({ mode }) => {
             './Configs': './src/@configs/Configs.tsx',
           },
           shared: [
-            '@emotion/react',
-            '@emotion/styled',
-            '@mui/lab',
-            '@mui/material',
-            '@mui/x-data-grid-premium',
-            '@mui/x-date-pickers-pro',
             'react',
             'react-dom',
 

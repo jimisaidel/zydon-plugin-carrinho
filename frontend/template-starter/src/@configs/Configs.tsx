@@ -1,5 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import { Authed } from '@zydon/auth';
+import Common from '@zydon/common/components/Common';
 
 import router from './routes';
 
@@ -13,7 +14,9 @@ const Configs = () => {
       password={import.meta.env.VITE_PASSWORD}
       fallback={<>Acesso negado</>}
     >
-      <RouterProvider router={router} />
+      <Common primaryColor="#4E5BEC" cssVarPrefix="configs">
+        <RouterProvider router={router} />
+      </Common>
     </Authed>
   );
 };
