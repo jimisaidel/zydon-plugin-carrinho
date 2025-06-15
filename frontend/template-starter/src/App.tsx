@@ -7,7 +7,7 @@ import Configs from './@configs/Configs';
 import '@zydon/common/styles.css';
 
 const App = () => (
-  <Common primaryColor="#4E5BEC">
+  <Common primaryColor="#000000">
     <Viewer configView={<Configs />} appView={<Plugin />} />
   </Common>
 );
