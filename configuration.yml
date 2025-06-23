@@ -12,7 +12,7 @@ is_alive_endpoint:
   url: ""
 installation_endpoint:
   url: ""
-unninstallation_endpoint:
+uninstallation_endpoint:
   url: ""
 permissions:
   - ""
