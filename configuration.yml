@@ -1,3 +1,4 @@
+version: ""
 auth:
   type: "basic"
   client_id: ""
@@ -7,7 +8,11 @@ entry_points:
     artifact_id: ""
   - entry_point_key: ""
     artifact_id: ""
+is_alive_endpoint:
+  url: ""
 installation_endpoint:
+  url: ""
+unninstallation_endpoint:
   url: ""
 permissions:
   - ""

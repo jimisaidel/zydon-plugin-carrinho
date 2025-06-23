@@ -1,7 +1,7 @@
-id: ""
-name: ""
-type: ""
-fields:
+- id: ""
+  name: ""
+  type: ""
+  fields:
     - name: ""
       type: ""
       required: false
