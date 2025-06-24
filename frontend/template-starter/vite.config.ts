@@ -8,52 +8,83 @@ import packageJson from './package.json';
 const BASE_PATH = `/apps/${packageJson.name}`;
 
 export default defineConfig(({ mode }) => {
-  if (mode === 'app') {
-    return {
-      plugins: [react(), tsconfigPaths()],
-      build: {
-        rollupOptions: {
-          input: './src/@app/_app.tsx',
-          output: {
-            dir: 'dist/app',
-            chunkFileNames: 'app.js',
-            entryFileNames: 'app.js',
-            assetFileNames: () => 'app[extname]',
+  switch (mode) {
+    case 'app':
+      return {
+        plugins: [react(), tsconfigPaths()],
+        build: {
+          rollupOptions: {
+            input: './src/@app/_app.tsx',
+            output: {
+              dir: 'dist/app',
+              chunkFileNames: 'app.js',
+              entryFileNames: 'app.js',
+              assetFileNames: () => 'app[extname]',
+            },
           },
         },
-      },
-    };
-  } else {
-    return {
-      base: BASE_PATH,
-      preview: {
-        port: 4177,
-        strictPort: true,
-      },
-      plugins: [
-        react(),
-        tsconfigPaths(),
-        federation({
-          name: 'configs',
-          filename: 'remoteEntry.js',
-          exposes: {
-            './Configs': './src/@configs/Configs.tsx',
+      };
+    case 'checkout':
+      return {
+        plugins: [react(), tsconfigPaths()],
+        build: {
+          rollupOptions: {
+            input: './src/@app/_app.tsx',
+            output: {
+              dir: 'dist/app-checkout',
+              chunkFileNames: 'app.js',
+              entryFileNames: 'app.js',
+              assetFileNames: () => 'app[extname]',
+            },
           },
-          shared: [
-            'react',
-            'react-dom',
+        },
+      };
+    case 'product-detail':
+      return {
+        plugins: [react(), tsconfigPaths()],
+        build: {
+          rollupOptions: {
+            input: './src/@app/_app.tsx',
+            output: {
+              dir: 'dist/app-product-detail',
+              chunkFileNames: 'app.js',
+              entryFileNames: 'app.js',
+              assetFileNames: () => 'app[extname]',
+            },
+          },
+        },
+      };
+    default:
+      return {
+        base: BASE_PATH,
+        preview: {
+          port: 4177,
+          strictPort: true,
+        },
+        plugins: [
+          react(),
+          tsconfigPaths(),
+          federation({
+            name: 'configs',
+            filename: 'remoteEntry.js',
+            exposes: {
+              './Configs': './src/@configs/Configs.tsx',
+            },
+            shared: [
+              'react',
+              'react-dom',
 
-            '@mui/material/Tooltip',
-            '@mui/material/Popper',
-          ],
-        }),
-      ],
-      build: {
-        modulePreload: false,
-        target: 'esnext',
-        minify: false,
-        cssCodeSplit: false,
-      },
-    };
+              '@mui/material/Tooltip',
+              '@mui/material/Popper',
+            ],
+          }),
+        ],
+        build: {
+          modulePreload: false,
+          target: 'esnext',
+          minify: false,
+          cssCodeSplit: false,
+        },
+      };
   }
 });
