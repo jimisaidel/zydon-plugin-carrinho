@@ -5,7 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 import packageJson from './package.json';
 
-const BASE_PATH = `/apps/${packageJson.name}`;
+const BASE_PATH = `/store/apps/${packageJson.name}`;
 
 export default defineConfig(({ mode }) => {
   switch (mode) {
