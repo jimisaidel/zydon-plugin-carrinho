@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cross-env VITE_MODE=production tsc -b && vite build",
+    "build": "tsc -b && cross-env VITE_MODE=production vite build",
     "build:app": "tsc -b && vite build --mode app",
     "build:checkout": "tsc -b && vite build --mode checkout",
     "build:product-detail": "tsc -b && vite build --mode product-detail",
