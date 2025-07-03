@@ -51,7 +51,7 @@ const Main = () => {
 
   return (
     <Stack>
-      <AppBar position="sticky" color="primary">
+      <AppBar position="sticky" sx={{ top: 60 }} color="primary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Icon icon="FAVOURITE" mr={1} />
