@@ -1,0 +1,11 @@
+- id: ""
+  name: ""
+  resource: ""
+  resource_id: ""
+  event: ""
+  url: ""
+  http_method: ""
+  content_type: ""
+  headers:
+    - name: ""
+      value: ""

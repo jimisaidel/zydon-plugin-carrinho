@@ -6,8 +6,10 @@ auth:
 entry_points:
   - entry_point_key: ""
     artifact_id: ""
+    route: ""
   - entry_point_key: ""
     artifact_id: ""
+    route: ""
 is_alive_endpoint:
   url: ""
 installation_endpoint:
