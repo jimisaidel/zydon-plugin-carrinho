@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
         plugins: [react(), tsconfigPaths()],
         build: {
           rollupOptions: {
-            input: './src/@app/_app.tsx',
+            input: './src/@app-checkout/_app.tsx',
             output: {
               dir: 'dist/app-checkout',
               chunkFileNames: 'app.js',
@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => {
         plugins: [react(), tsconfigPaths()],
         build: {
           rollupOptions: {
-            input: './src/@app/_app.tsx',
+            input: './src/@app-product-detail/_app.tsx',
             output: {
               dir: 'dist/app-product-detail',
               chunkFileNames: 'app.js',
