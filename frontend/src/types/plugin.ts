@@ -6,3 +6,7 @@ export enum Events {
   CLOSE_ORDER = 'CLOSE_ORDER',
   RELOAD_CART = 'RELOAD_CART',
 }
+
+export type PluginProps<P = Record<string, unknown>> = P & {
+  primaryColor: string;
+};

@@ -1,7 +1,7 @@
-import { defineReactElement } from 'utils/plugin';
+import { buildPlugin } from 'utils/plugin';
 
 import packageJson from '../../package.json';
 
-import AppReact from './App';
+import App from './App';
 
-defineReactElement(AppReact, packageJson.name);
+buildPlugin(App, packageJson.name);

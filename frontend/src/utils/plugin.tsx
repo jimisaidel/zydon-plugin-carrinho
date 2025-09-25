@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 
-function createReactElementClass<P>(Component: React.ComponentType<P>) {
+function createApp<P>(Component: React.ComponentType<P>) {
   return class ReactElement extends HTMLElement {
     private mountPoint: HTMLDivElement;
     private root: ReactDOM.Root | null = null;
@@ -49,12 +49,12 @@ function createReactElementClass<P>(Component: React.ComponentType<P>) {
   };
 }
 
-export function defineReactElement<P>(
+export function buildPlugin<P>(
   Component: React.ComponentType<P>,
   tagName: string,
 ) {
   if (!customElements.get(tagName)) {
-    const Element = createReactElementClass(Component);
+    const Element = createApp(Component);
     customElements.define(tagName, Element);
   }
 }
