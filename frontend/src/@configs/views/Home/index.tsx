@@ -6,7 +6,7 @@ import Icon from '@zydon/common/components/Icon';
 import WhiteBox from '@zydon/common/components/WhiteBox';
 import { fCurrencyBRL } from '@zydon/common/utils/formatNumber';
 
-import useAuth from 'hooks/useAuth';
+import useAuth from 'hooks/use-auth';
 
 const Home = () => {
   const {
