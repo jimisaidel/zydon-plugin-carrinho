@@ -4,4 +4,4 @@ import packageJson from '../../package.json';
 
 import App from './App';
 
-buildPlugin(App, `${packageJson.name}-product-detail`);
+buildPlugin(App, `${packageJson.name}-product-detail-actions`);

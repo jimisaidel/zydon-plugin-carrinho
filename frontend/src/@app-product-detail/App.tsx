@@ -1,14 +1,14 @@
 import Common from '@zydon/common/components/Common';
 
 import Plugin from './Plugin';
-import { AppProps } from './props';
+import { Props } from './props';
 
 import './styles.css';
 
-const App = ({ primaryColor = '#000000' }: AppProps) => {
+const App = ({ primaryColor = '#000000', ...otherProps }: Props) => {
   return (
     <Common primaryColor={primaryColor} cssVarPrefix="plugin">
-      <Plugin />
+      <Plugin {...{ primaryColor, ...otherProps }} />
     </Common>
   );
 };
