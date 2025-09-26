@@ -29,7 +29,12 @@ export const primaryColor = '#2e2b2b';
 
 export const mockData = {
   app: {
-    pathname: '/app',
+    pathname: '/rota-atual-aqui',
+    primaryColor,
+    authData,
+  },
+  appScreen: {
+    pathname: '/rota-atual-aqui',
     primaryColor,
     authData,
   },

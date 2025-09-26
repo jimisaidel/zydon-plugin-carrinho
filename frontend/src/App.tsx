@@ -4,6 +4,7 @@ import Viewer from '@zydon/plugin/components/Viewer';
 import { mockData, primaryColor } from 'mocks/data-props';
 
 import AppPlugin from './@app/App';
+import AppScreen from './@app-screen/App';
 import Configs from './@configs/Configs';
 
 import '@zydon/common/styles.css';
@@ -19,7 +20,7 @@ const App = () => (
       productDetailActionsView={<>Product Detail Actions View</>}
       productsListView={<>Products List View</>}
       productsListItemView={<>Products List Item View</>}
-      screenView={<>Screen View</>}
+      screenView={<AppScreen {...mockData.appScreen} />}
     />
   </Common>
 );
