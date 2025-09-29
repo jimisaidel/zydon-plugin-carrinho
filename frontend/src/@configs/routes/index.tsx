@@ -6,8 +6,7 @@ import Main from '@configs/layouts/Main';
 import { BASE_PATH } from 'configs/config-global';
 
 const Home = loadable(lazy(() => import('@configs/views/Home')));
-const About = loadable(lazy(() => import('@configs/views/About')));
-const Form = loadable(lazy(() => import('@configs/views/Form')));
+const CartDetails = loadable(lazy(() => import('@configs/views/CartDetails')));
 
 const router = createBrowserRouter(
   [
@@ -21,12 +20,8 @@ const router = createBrowserRouter(
           index: true,
         },
         {
-          path: '/sobre',
-          element: <About />,
-        },
-        {
-          path: '/formulario',
-          element: <Form />,
+          path: '/cart-details/:id',
+          element: <CartDetails />,
         },
         {
           path: '*',

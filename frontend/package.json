@@ -28,10 +28,12 @@
     "@zydon/auth": "^2.0.7",
     "@zydon/common": "^2.4.9",
     "jest-fetch-mock": "^3.0.3",
+    "lucide-react": "^0.544.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.57.0",
-    "react-router-dom": "^7.6.2"
+    "react-router-dom": "^7.6.2",
+    "recharts": "^3.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.7",
