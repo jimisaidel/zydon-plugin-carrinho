@@ -465,4 +465,18 @@ export const mockData = {
     fetchingProducts: false,
     products,
   },
+  productsList: {
+    primaryColor,
+    authData,
+    newOrder,
+    preOrderFormData: undefined,
+    checkoutFormData: undefined,
+    partnerId: '1',
+    partner: '1',
+    loadingCategories: false,
+    categories,
+    loadingProducts: false,
+    fetchingProducts: false,
+    products,
+  },
 };
