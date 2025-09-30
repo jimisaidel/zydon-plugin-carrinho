@@ -259,7 +259,7 @@ export function RecentCarts({
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <Typography variant="caption" color="text.secondary">Status:</Typography>
-                      {getStatusChip(cart, abandonmentHours)}
+                      {getStatusBadge(cart)}
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <Typography variant="caption" color="text.secondary">Atualizado:</Typography>

@@ -34,7 +34,7 @@ interface ShoppingCart {
 
 // Interface removida - não utilizada
 
-const API_BASE_URL = "/api/portaladmin/v2"
+const API_BASE_URL = "/store/apps/zydon-plugin-name/api/portaladmin/v2"
 const API_HEADERS = {
   "User-Agent": "Zydon-Dashboard/1.0",
   "X-Zydon-Access-Key-Code": (import.meta as any).env?.VITE_ZYDON_API_KEY || "",
