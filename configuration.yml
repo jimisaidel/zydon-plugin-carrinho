@@ -1,27 +1,12 @@
-version: ""
+version: "1.0.0"
 auth:
   type: "basic"
   client_id: ""
   callback_uri: ""
 entry_points:
-  - entry_point_key: ""
-    artifact_id: ""
-    route: ""
-  - entry_point_key: ""
-    artifact_id: ""
-    route: ""
-is_alive_endpoint:
-  url: ""
-installation_endpoint:
-  url: ""
-uninstallation_endpoint:
-  url: ""
-permissions:
-  - ""
-  - ""
-  - ""
-  - ""
-  - ""
+  - entry_point_key: "PLUGIN_CONFIGURATION"
+    artifact_id: "configs"
+    route: "/"
 
 admin_launchers:
   id: "admin-launcher-01"
@@ -35,16 +20,3 @@ admin_launchers:
     - id: "admin-launcher-child-02"
       name: "Submenu do Plugin 02"
       route: "/2"
-
-portal_launchers:
-  id: "portal-launcher-01"
-  name: "Menu do Plugin 01"
-  artifact_id: "app"
-  childs:
-    - id: "portal-launcher-child-01"
-      artifact_id: "app"
-      name: "Submenu do Plugin 01"
-
-    - id: "portal-launcher-child-02"
-      artifact_id: "app"
-      name: "Submenu do Plugin 02"
