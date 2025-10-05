@@ -829,7 +829,7 @@ export const mockData = {
 // Função para buscar dados brutos da API
 export async function getShoppingCartsRaw(page: string = "0", perPage: string = "20") {
   try {
-    const response = await fetch(`${API_BASE_URL}/b2b/shopping-carts?page=${page}&perPage=${perPage}`, {
+    const response = await fetch(`${API_BASE_URL}/portaladmin/v2/shopping-carts?page=${page}&perPage=${perPage}`, {
       method: "GET",
       headers: getAuthHeaders(),
     })
