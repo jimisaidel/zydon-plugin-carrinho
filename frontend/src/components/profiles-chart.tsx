@@ -31,7 +31,11 @@ export const ProfilesChart = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const loadChartData = async () => {
+      if (!isMounted) return;
+      
       setIsLoading(true);
       try {
         // Buscar todos os carrinhos independente do status
@@ -96,16 +100,26 @@ export const ProfilesChart = ({
           .sort((a: any, b: any) => b.carrinhos - a.carrinhos)
           .slice(0, 10); // Mostrar apenas os top 10 perfis
 
-        setData(formattedData);
+        if (isMounted) {
+          setData(formattedData);
+        }
       } catch (error) {
         console.error('Erro ao carregar dados dos perfis:', error);
-        setData([]);
+        if (isMounted) {
+          setData([]);
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     };
 
     loadChartData();
+    
+    return () => {
+      isMounted = false;
+    };
   }, [timeRange, startDate, endDate, clientFilter, sellerFilter, abandonmentHours]);
 
   const StyledCard = styled(Card)(({ theme }) => ({

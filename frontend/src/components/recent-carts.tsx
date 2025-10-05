@@ -68,7 +68,11 @@ export function RecentCarts({
   }, [])
 
   useEffect(() => {
+    let isMounted = true;
+    
     const loadRecentCarts = async () => {
+      if (!isMounted) return;
+      
       setLoading(true)
       try {
         const response = await getShoppingCartsRaw("0", "1000")
@@ -109,15 +113,31 @@ export function RecentCarts({
           )
         }
 
-        setRecentCarts(filteredCarts)
+        // Ordenar por data de atualização (mais recentes primeiro)
+        const sortedCarts = filteredCarts.sort((a: any, b: any) => 
+          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        )
+
+        if (isMounted) {
+          setRecentCarts(sortedCarts.slice(0, 10))
+        }
       } catch (error) {
         console.error("Erro ao carregar carrinhos recentes:", error)
+        if (isMounted) {
+          setRecentCarts([])
+        }
       } finally {
-        setLoading(false)
+        if (isMounted) {
+          setLoading(false)
+        }
       }
     }
 
     loadRecentCarts()
+    
+    return () => {
+      isMounted = false;
+    };
   }, [startDate, endDate, clientFilter, sellerFilter, abandonmentHours])
 
   const getTimeAgo = useMemo(() => {
