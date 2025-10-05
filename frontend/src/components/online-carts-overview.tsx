@@ -12,10 +12,10 @@ import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 // import { ClientsChart } from './clients-chart'; // TEMPORARIAMENTE COMENTADO
 import { MetricsCards } from './metrics-cards';
 // import { ProfilesChart } from './profiles-chart'; // TEMPORARIAMENTE COMENTADO
-import { RecentCarts } from './recent-carts';
+// import { RecentCarts } from './recent-carts'; // CULPADO IDENTIFICADO!
 // import { SellersChart } from './sellers-chart'; // TEMPORARIAMENTE COMENTADO
 // import { TopProductsChart } from './top-products-chart'; // TEMPORARIAMENTE COMENTADO
-// import { UsersChart } from './users-chart'; // TEMPORARIAMENTE COMENTADO
+import { UsersChart } from './users-chart';
 
 export const AbandonedCartsOverview = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -260,8 +260,7 @@ export const AbandonedCartsOverview = () => {
         />
       </Box>
 
-      {/* TEMPORARIAMENTE COMENTADO - Todos os Gráficos */}
-      {/* 
+      {/* TESTANDO GRÁFICOS INDIVIDUALMENTE */}
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <UsersChart
@@ -273,38 +272,21 @@ export const AbandonedCartsOverview = () => {
             abandonmentHours={abandonmentHours}
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <ClientsChart
-            timeRange={timeRange}
-            startDate={startDate}
-            endDate={endDate}
-            clientFilter={clientFilter}
-            sellerFilter={sellerFilter}
-            abandonmentHours={abandonmentHours}
-          />
-        </Grid>
       </Grid>
-
+      
+      {/* Outros gráficos ainda comentados */}
+      {/* 
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <ProfilesChart
-            timeRange={timeRange}
-            startDate={startDate}
-            endDate={endDate}
-            clientFilter={clientFilter}
-            sellerFilter={sellerFilter}
-            abandonmentHours={abandonmentHours}
-          />
+          <ClientsChart />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <SellersChart
-            timeRange={timeRange}
-            startDate={startDate}
-            endDate={endDate}
-            abandonmentHours={abandonmentHours}
-            clientFilter={clientFilter}
-            sellerFilter={sellerFilter}
-          />
+          <ProfilesChart />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} sx={{ mb: 2 }}>
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          <SellersChart />
         </Grid>
       </Grid>
       */}
@@ -325,7 +307,8 @@ export const AbandonedCartsOverview = () => {
       </Grid>
       */}
 
-      {/* Lista de Carrinhos Recentes - REATIVADA PARA TESTE */}
+      {/* CULPADO IDENTIFICADO - RecentCarts causa erro de hooks */}
+      {/* 
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <RecentCarts
@@ -337,6 +320,7 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
+      */}
     </Box>
   );
 };
