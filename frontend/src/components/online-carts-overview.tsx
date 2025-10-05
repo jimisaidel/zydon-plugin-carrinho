@@ -12,10 +12,10 @@ import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 // import { ClientsChart } from './clients-chart'; // TEMPORARIAMENTE COMENTADO
 import { MetricsCards } from './metrics-cards';
 // import { ProfilesChart } from './profiles-chart'; // TEMPORARIAMENTE COMENTADO
-// import { RecentCarts } from './recent-carts'; // CULPADO IDENTIFICADO!
+import { RecentCarts } from './recent-carts';
 // import { SellersChart } from './sellers-chart'; // TEMPORARIAMENTE COMENTADO
 // import { TopProductsChart } from './top-products-chart'; // TEMPORARIAMENTE COMENTADO
-import { UsersChart } from './users-chart';
+// import { UsersChart } from './users-chart'; // TEMPORARIAMENTE COMENTADO
 
 export const AbandonedCartsOverview = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -260,7 +260,8 @@ export const AbandonedCartsOverview = () => {
         />
       </Box>
 
-      {/* TESTANDO GRÁFICOS INDIVIDUALMENTE */}
+      {/* TODOS OS GRÁFICOS COMENTADOS */}
+      {/* 
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <UsersChart
@@ -273,6 +274,7 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
+      */}
       
       {/* Outros gráficos ainda comentados */}
       {/* 
@@ -307,8 +309,7 @@ export const AbandonedCartsOverview = () => {
       </Grid>
       */}
 
-      {/* CULPADO IDENTIFICADO - RecentCarts causa erro de hooks */}
-      {/* 
+      {/* Lista de Carrinhos - TESTANDO COM BARREL IMPORTS CORRIGIDOS */}
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <RecentCarts
@@ -320,7 +321,6 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
-      */}
     </Box>
   );
 };

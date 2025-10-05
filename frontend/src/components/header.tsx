@@ -1,7 +1,12 @@
 import { ShoppingCart, Sun, Moon } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { useEffect, useState } from "react"
-import { AppBar, Toolbar, Typography, IconButton, Box, styled } from "@mui/material"
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
 export function Header() {
   const { theme, setTheme } = useTheme()
