@@ -180,7 +180,7 @@ export const AbandonedCartsOverview = () => {
                   variant="outlined"
                   size="small"
                   fullWidth
-                  startIcon={<X size={16} />}
+                  startIcon={<Close />}
                 >
                   Limpar Filtros
                 </Button>
@@ -194,7 +194,7 @@ export const AbandonedCartsOverview = () => {
                 variant="contained"
                 size="small"
                 fullWidth
-                startIcon={<RefreshCw size={16} className={isLoading ? 'animate-spin' : ''} />}
+                startIcon={<Refresh />}
               >
                 Atualizar
               </Button>

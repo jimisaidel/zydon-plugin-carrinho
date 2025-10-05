@@ -2,13 +2,13 @@ import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import { Header } from 'components/header';
+// import { Header } from 'components/header'; // Removido conforme solicitado
 import { TooltipProvider } from 'components/ui/tooltip';
 
 const Main = () => {
   return (
     <TooltipProvider>
-      <Header />
+      {/* <Header /> */}
 
       <Box component="main" sx={{ flexGrow: 1, py: { xs: 0.5, sm: 1 } }}>
         <Container

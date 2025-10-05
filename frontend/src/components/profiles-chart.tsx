@@ -146,7 +146,7 @@ export const ProfilesChart = ({
               Quantidade de carrinhos por perfil de usuário (todos os status)
             </Typography>
           </Box>
-          <UserCheck size={16} color="#666" />
+          <PersonAdd sx={{ color: '#666' }} />
         </Box>
         {isLoading ? (
           <Box sx={{ height: { xs: 250, sm: 280, md: 300 }, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

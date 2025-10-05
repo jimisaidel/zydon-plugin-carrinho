@@ -257,7 +257,7 @@ export function RecentCarts({
                       size="small"
                       onClick={() => navigate(`/cart/${cart.id}`)}
                     >
-                      <Eye size={16} />
+                      <Visibility />
                     </IconButton>
                   </Box>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -282,7 +282,7 @@ export function RecentCarts({
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <Typography variant="caption" color="text.secondary">Atualizado:</Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <Clock size={12} />
+                        <Schedule fontSize="small" />
                         <Typography variant="caption">{timeAgo}</Typography>
                       </Box>
                     </Box>
@@ -365,7 +365,7 @@ export function RecentCarts({
                     </TableCell>
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <Clock size={12} />
+                        <Schedule fontSize="small" />
                         <Typography variant="body2" color="text.secondary">
                           {timeAgo}
                         </Typography>
@@ -377,7 +377,7 @@ export function RecentCarts({
                           size="small"
                           onClick={() => navigate(`/cart-details/${cart.id}`)}
                         >
-                          <Eye size={12} />
+                          <Visibility fontSize="small" />
                         </IconButton>
                       </Tooltip>
                     </TableCell>

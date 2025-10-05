@@ -7,14 +7,14 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { 
-  Activity, 
   AttachMoney, 
   Inventory, 
   Pause, 
   ShoppingCart, 
   TrendingDown, 
   TrendingUp, 
-  People 
+  People,
+  Timeline 
 } from '@mui/icons-material';
 
 import { getShoppingCarts } from '../services/api';
@@ -143,7 +143,7 @@ export const MetricsCards = ({
       value: isLoading ? '...' : metrics.totalInProgressCarts.toLocaleString(),
       change: '+8.2%',
       trend: 'up',
-      icon: Activity,
+      icon: Timeline,
       description: `ativos há menos de ${abandonmentHours}h`,
       additionalInfo: [
         {
@@ -199,7 +199,7 @@ export const MetricsCards = ({
           })}`,
       change: '+15.3%',
       trend: 'up',
-      icon: DollarSign,
+      icon: AttachMoney,
       description: 'valor total dos carrinhos',
     },
     {
@@ -279,9 +279,9 @@ export const MetricsCards = ({
                   }}
                 >
                   {metric.trend === 'up' ? (
-                    <TrendingUp size={12} style={{ marginRight: 4 }} />
+                    <TrendingUp sx={{ mr: 0.5 }} fontSize="small" />
                   ) : (
-                    <TrendingDown size={12} style={{ marginRight: 4 }} />
+                    <TrendingDown sx={{ mr: 0.5 }} fontSize="small" />
                   )}
                   <Typography variant="caption">{metric.change}</Typography>
                 </Box>

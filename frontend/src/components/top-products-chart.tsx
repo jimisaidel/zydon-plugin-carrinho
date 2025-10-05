@@ -304,7 +304,7 @@ export const TopProductsChart = ({
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
           <Box>
             <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-              <Package size={16} />
+              <Inventory />
               {getDrillDownTitle()}
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -316,7 +316,7 @@ export const TopProductsChart = ({
               variant="outlined"
               size="small"
               onClick={handleGoBack}
-              startIcon={<ArrowLeft size={16} />}
+              startIcon={<ArrowBack />}
             >
               Voltar
             </Button>
@@ -396,7 +396,7 @@ export const TopProductsChart = ({
             }}
             disabled={!selectedBarData}
           >
-            <Package size={16} style={{ marginRight: 8 }} />
+            <Inventory sx={{ mr: 1 }} />
             Produtos
           </MenuItem>
           <MenuItem
@@ -406,7 +406,7 @@ export const TopProductsChart = ({
             }}
             disabled={!selectedBarData}
           >
-            <User size={16} style={{ marginRight: 8 }} />
+            <Person sx={{ mr: 1 }} />
             Usuários
           </MenuItem>
           <MenuItem
@@ -416,7 +416,7 @@ export const TopProductsChart = ({
             }}
             disabled={!selectedBarData}
           >
-            <Building size={16} style={{ marginRight: 8 }} />
+            <Business sx={{ mr: 1 }} />
             Parceiros
           </MenuItem>
           <MenuItem
@@ -426,7 +426,7 @@ export const TopProductsChart = ({
             }}
             disabled={!selectedBarData}
           >
-            <UserCheck size={16} style={{ marginRight: 8 }} />
+            <PersonAdd sx={{ mr: 1 }} />
             Vendedores
           </MenuItem>
           <MenuItem
@@ -436,7 +436,7 @@ export const TopProductsChart = ({
             }}
             disabled={!selectedBarData}
           >
-            <Users size={16} style={{ marginRight: 8 }} />
+            <People sx={{ mr: 1 }} />
             Perfis
           </MenuItem>
         </Menu>

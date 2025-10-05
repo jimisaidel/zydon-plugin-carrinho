@@ -47,7 +47,7 @@ export function Header() {
         <Toolbar sx={{ justifyContent: 'space-between', px: 2, py: 1.5 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
             <LogoContainer>
-              <ShoppingCart size={24} color="white" />
+              <ShoppingCart sx={{ color: 'white' }} />
             </LogoContainer>
             <Typography variant="h6" component="h1" sx={{ fontWeight: 600 }}>
               GC - Gestão de Carrinhos
@@ -64,7 +64,7 @@ export function Header() {
       <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 1, sm: 2 }, py: 0.5, minHeight: { xs: 48, sm: 56 } }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
           <LogoContainer>
-            <ShoppingCart size={24} color="white" />
+            <ShoppingCart sx={{ color: 'white' }} />
           </LogoContainer>
           <Typography 
             variant="h6" 

@@ -131,7 +131,7 @@ export function UsersChart({
               Quantidade de carrinhos por usuário (todos os status)
             </Typography>
           </Box>
-          <Users size={16} color="#666" />
+          <People sx={{ color: '#666' }} />
         </Box>
         {isLoading ? (
           <Box sx={{ height: { xs: 250, sm: 280, md: 300 }, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
