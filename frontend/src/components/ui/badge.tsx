@@ -1,16 +1,16 @@
-import * as React from 'react'
 import { Chip, ChipProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline'
 
-const StyledBadge = styled(Chip)<{ variant?: BadgeVariant }>(({ theme, variant = 'default' }) => {
+const StyledBadge = styled(Chip, {
+  shouldForwardProp: (prop) => prop !== 'customVariant',
+})<{ customVariant?: BadgeVariant }>(({ customVariant = 'default' }) => {
   const baseStyles = {
     height: 'auto',
     fontSize: '0.75rem',
     fontWeight: 500,
     borderRadius: '6px',
-    padding: '2px 8px',
     '& .MuiChip-label': {
       padding: 0,
     },
@@ -57,7 +57,7 @@ const StyledBadge = styled(Chip)<{ variant?: BadgeVariant }>(({ theme, variant =
 
   return {
     ...baseStyles,
-    ...variantStyles[variant],
+    ...variantStyles[customVariant as keyof typeof variantStyles],
   }
 })
 
@@ -69,7 +69,7 @@ interface BadgeProps extends Omit<ChipProps, 'variant'> {
 function Badge({ variant = 'default', asChild, children, ...props }: BadgeProps) {
   return (
     <StyledBadge
-      variant={variant}
+      customVariant={variant}
       label={children}
       {...props}
     />

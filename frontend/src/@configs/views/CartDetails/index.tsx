@@ -138,9 +138,7 @@ export default function CartDetailsPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Perfil</p>
-                <Badge variant="outline" className="text-xs">
-                  {cart.user_profile}
-                </Badge>
+                <Badge variant="outline" className="text-xs" label={cart.user_profile} />
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Parceiro</p>

@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react"
-import { useTheme } from "./theme-provider"
 import { ShoppingCart, ChevronLeft, ChevronRight, Sun, Moon } from "lucide-react"
 import { 
   Drawer, 
   Box, 
   Typography, 
-  IconButton, 
-  List, 
-  ListItem, 
-  ListItemButton, 
-  ListItemIcon, 
-  ListItemText, 
-  Divider, 
-  Avatar,
-  styled 
-} from "@mui/material"
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Avatar
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
+
+// Mock useTheme hook for now
+const useTheme = () => ({
+  theme: 'light',
+  setTheme: (theme: string) => console.log('Setting theme:', theme)
+})
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { setTheme, theme } = useTheme()
-
   useEffect(() => {
     setMounted(true)
   }, [])

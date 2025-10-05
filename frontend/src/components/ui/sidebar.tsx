@@ -18,12 +18,7 @@ import {
   SheetTitle,
 } from './sheet'
 import { Skeleton } from './skeleton'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from './tooltip'
+// Tooltip components removed for now
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -128,7 +123,7 @@ function SidebarProvider({
 
   return (
     <SidebarContext.Provider value={contextValue}>
-      <TooltipProvider delayDuration={0}>
+      <div>
         <div
           data-slot="sidebar-wrapper"
           style={
@@ -146,7 +141,7 @@ function SidebarProvider({
         >
           {children}
         </div>
-      </TooltipProvider>
+      </div>
     </SidebarContext.Provider>
   )
 }
@@ -506,10 +501,10 @@ function SidebarMenuButton({
 }: React.ComponentProps<'button'> & {
   asChild?: boolean
   isActive?: boolean
-  tooltip?: string | React.ComponentProps<typeof TooltipContent>
+  tooltip?: string | any
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot : 'button'
-  const { isMobile, state } = useSidebar()
+  // const { isMobile, state } = useSidebar() // Removed for now
 
   const button = (
     <Comp
@@ -532,17 +527,7 @@ function SidebarMenuButton({
     }
   }
 
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>{button}</TooltipTrigger>
-      <TooltipContent
-        side="right"
-        align="center"
-        hidden={state !== 'collapsed' || isMobile}
-        {...tooltip}
-      />
-    </Tooltip>
-  )
+  return button
 }
 
 function SidebarMenuAction({

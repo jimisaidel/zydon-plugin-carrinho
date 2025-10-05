@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Card as MuiCard, CardContent as MuiCardContent, Typography, Box } from '@mui/material'
+import { Card as MuiCard, Typography, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 const StyledCard = styled(MuiCard)(({ theme }) => ({
@@ -93,7 +93,6 @@ function CardTitle({ className, ...props }: React.ComponentProps<typeof StyledCa
   return (
     <StyledCardTitle
       className={className}
-      component="div"
       {...props}
     />
   )
@@ -103,7 +102,6 @@ function CardDescription({ className, ...props }: React.ComponentProps<typeof St
   return (
     <StyledCardDescription
       className={className}
-      component="div"
       {...props}
     />
   )
