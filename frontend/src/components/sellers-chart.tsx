@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react"
-import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
-import { BarChart } from "recharts/lib/chart/BarChart";
-import { Bar } from "recharts/lib/cartesian/Bar";
-import { XAxis } from "recharts/lib/cartesian/XAxis";
-import { YAxis } from "recharts/lib/cartesian/YAxis";
-import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
-import { Tooltip } from "recharts/lib/component/Tooltip";
-import { LabelList } from "recharts/lib/component/LabelList";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -161,60 +172,46 @@ export function SellersChart({ timeRange, startDate, endDate, abandonmentHours, 
             </Typography>
           </Box>
         ) : (
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-              <XAxis
-                dataKey="sellerName"
-                tick={{ fontSize: 12, fill: '#666' }}
-                angle={-45}
-                textAnchor="end"
-                height={80}
-              />
-              <YAxis tick={{ fontSize: 12, fill: '#666' }} />
-              <Tooltip
-                content={({ active, payload, label }) => {
-                  if (active && payload && payload.length) {
-                    return (
-                      <div
-                        style={{
-                          backgroundColor: "hsl(var(--background))",
-                          border: "1px solid hsl(var(--border))",
-                          borderRadius: "6px",
-                          padding: "8px 12px",
-                          color: "hsl(var(--foreground))",
-                        }}
-                      >
-                        <p style={{ color: "hsl(var(--foreground))", margin: 0, marginBottom: "4px" }}>
-                          {label}
-                        </p>
-                        <p style={{ color: "hsl(var(--foreground))", margin: 0 }}>
-                          {`${payload[0].value} carrinhos`}
-                        </p>
-                      </div>
-                    )
-                  }
-                  return null
-                }}
-              />
-              <Bar 
-                dataKey="count" 
-                fill="#21DF92" 
-                radius={[4, 4, 0, 0]}
-                style={{ filter: "none" }}
-              >
-                <LabelList
-                  dataKey="count"
-                  position="top"
-                  style={{
-                    fill: "hsl(var(--foreground))",
-                    fontSize: "12px",
-                    fontWeight: "500"
-                  }}
-                />
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <Box sx={{ height: 300 }}>
+            <Bar
+              data={{
+                labels: data.map(item => item.sellerName),
+                datasets: [
+                  {
+                    label: 'Carrinhos',
+                    data: data.map(item => item.count),
+                    backgroundColor: '#21DF92',
+                    borderColor: '#21DF92',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                  },
+                ],
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                  },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: { color: '#666', font: { size: 12 } },
+                    grid: { color: '#e0e0e0' },
+                  },
+                  x: {
+                    ticks: { color: '#666', font: { size: 12 }, maxRotation: 45 },
+                    grid: { display: false },
+                  },
+                },
+              }}
+            />
+          </Box>
         )}
       </CardContent>
     </StyledCard>

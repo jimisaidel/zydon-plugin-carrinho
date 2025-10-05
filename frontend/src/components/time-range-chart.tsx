@@ -2,13 +2,26 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
-import { BarChart } from "recharts/lib/chart/BarChart";
-import { Bar } from "recharts/lib/cartesian/Bar";
-import { XAxis } from "recharts/lib/cartesian/XAxis";
-import { YAxis } from "recharts/lib/cartesian/YAxis";
-import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
-import { Tooltip } from "recharts/lib/component/Tooltip";
+import Box from '@mui/material/Box';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 interface TimeRangeChartProps {
   timeRange: string;
@@ -44,31 +57,46 @@ export const TimeRangeChart = ({}: TimeRangeChartProps) => {
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           Distribuição de carrinhos abandonados por horário do dia
         </Typography>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis
-              dataKey="hora"
-              stroke="hsl(var(--muted-foreground))"
-              fontSize={12}
-            />
-            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: 'hsl(var(--popover))',
-                border: '1px solid hsl(var(--border))',
-                borderRadius: '6px',
-                color: '#000000',
-              }}
-            />
-            <Bar
-              dataKey="abandonos"
-              fill="#21DF92"
-              radius={[4, 4, 0, 0]}
-              style={{ filter: 'none' }}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+        <Box sx={{ height: 300 }}>
+          <Bar
+            data={{
+              labels: data.map(item => item.hora),
+              datasets: [
+                {
+                  label: 'Abandonos',
+                  data: data.map(item => item.abandonos),
+                  backgroundColor: '#21DF92',
+                  borderColor: '#21DF92',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                },
+              ],
+            }}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  titleColor: '#fff',
+                  bodyColor: '#fff',
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: { color: '#666', font: { size: 12 } },
+                  grid: { color: '#e0e0e0' },
+                },
+                x: {
+                  ticks: { color: '#666', font: { size: 12 } },
+                  grid: { display: false },
+                },
+              },
+            }}
+          />
+        </Box>
       </CardContent>
     </StyledCard>
   );
