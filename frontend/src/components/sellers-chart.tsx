@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from "recharts"
+import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
+import { BarChart } from "recharts/lib/chart/BarChart";
+import { Bar } from "recharts/lib/cartesian/Bar";
+import { XAxis } from "recharts/lib/cartesian/XAxis";
+import { YAxis } from "recharts/lib/cartesian/YAxis";
+import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
+import { Tooltip } from "recharts/lib/component/Tooltip";
+import { LabelList } from "recharts/lib/component/LabelList";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';

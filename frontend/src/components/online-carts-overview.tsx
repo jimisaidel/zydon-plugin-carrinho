@@ -70,6 +70,8 @@ export const AbandonedCartsOverview = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%', height: '100%' }}>
       <Box sx={{ mb: 2 }}>
+        {/* Título e subtítulo comentados conforme solicitado */}
+        {/* 
         <Box sx={{ mb: 2 }}>
           <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 1, fontSize: { xs: '1.5rem', sm: '1.875rem', md: '2.25rem' } }}>
             Carrinhos Online
@@ -78,6 +80,7 @@ export const AbandonedCartsOverview = () => {
             Análise completa dos carrinhos que estão ativo no momento
           </Typography>
         </Box>
+        */}
       </Box>
 
       <Box sx={{

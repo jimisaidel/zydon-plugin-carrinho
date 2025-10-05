@@ -5,7 +5,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
+import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
+import { LineChart } from "recharts/lib/chart/LineChart";
+import { Line } from "recharts/lib/cartesian/Line";
+import { XAxis } from "recharts/lib/cartesian/XAxis";
+import { YAxis } from "recharts/lib/cartesian/YAxis";
+import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
+import { Tooltip } from "recharts/lib/component/Tooltip";
 import { getShoppingCartsRaw } from "../services/api"
 
 interface AbandonmentChartProps {

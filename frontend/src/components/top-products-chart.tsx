@@ -9,7 +9,14 @@ import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { ArrowLeft,Building, Package, User, UserCheck, Users } from 'lucide-react';
-import { Bar, BarChart, CartesianGrid, LabelList,ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
+import { BarChart } from "recharts/lib/chart/BarChart";
+import { Bar } from "recharts/lib/cartesian/Bar";
+import { XAxis } from "recharts/lib/cartesian/XAxis";
+import { YAxis } from "recharts/lib/cartesian/YAxis";
+import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
+import { Tooltip } from "recharts/lib/component/Tooltip";
+import { LabelList } from "recharts/lib/component/LabelList";
 
 import { getShoppingCartsRaw } from '../services/api';
 
