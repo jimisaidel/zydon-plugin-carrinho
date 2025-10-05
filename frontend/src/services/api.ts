@@ -856,8 +856,7 @@ export async function getShoppingCartsRaw(page: string = "0", perPage: string = 
     return data
   } catch (error: any) {
     console.error("Erro ao conectar com API Zydon:", error.message);
-    // Retornando dados mockados temporariamente
-    return mockData
+    throw error;
   }
 }
 
@@ -872,84 +871,110 @@ export async function getShoppingCarts(params: {
 }) {
   const { abandonmentHours = 24, clientFilter, sellerFilter, startDate, endDate } = params
   
-  // Buscar dados brutos - usar 1000 para pegar todos os carrinhos disponíveis
-  const rawData = await getShoppingCartsRaw("0", "1000")
-  let carts = rawData.items || []
-  
-  // Filtrar carrinhos com total > 0
-  carts = carts.filter((cart: ShoppingCart) => cart.total > 0)
-  
-  // Aplicar filtros se fornecidos
-  if (startDate || endDate) {
-    carts = carts.filter((cart: ShoppingCart) => {
-      const cartDate = new Date(cart.created_at)
-      
-      // Normalizar datas para comparação (ignorar hora) - usar apenas a parte da data
-      const cartDateStr = cartDate.toISOString().split('T')[0]
-      
-      if (startDate) {
-        if (cartDateStr < startDate) return false
-      }
-      
-      if (endDate) {
-        if (cartDateStr > endDate) return false
-      }
-      
-      return true
+  try {
+    // Buscar dados brutos - usar 1000 para pegar todos os carrinhos disponíveis
+    const rawData = await getShoppingCartsRaw("0", "1000")
+    let carts = rawData.items || []
+    
+    // Filtrar carrinhos com total > 0
+    carts = carts.filter((cart: ShoppingCart) => cart.total > 0)
+    
+    // Aplicar filtros se fornecidos
+    if (startDate || endDate) {
+      carts = carts.filter((cart: ShoppingCart) => {
+        const cartDate = new Date(cart.created_at)
+        
+        // Normalizar datas para comparação (ignorar hora) - usar apenas a parte da data
+        const cartDateStr = cartDate.toISOString().split('T')[0]
+        
+        if (startDate) {
+          if (cartDateStr < startDate) return false
+        }
+        
+        if (endDate) {
+          if (cartDateStr > endDate) return false
+        }
+        
+        return true
+      })
+    }
+
+    if (clientFilter) {
+      carts = carts.filter((cart: ShoppingCart) => 
+        cart.partner_name?.toLowerCase().includes(clientFilter.toLowerCase())
+      )
+    }
+
+    if (sellerFilter) {
+      carts = carts.filter((cart: ShoppingCart) => 
+        cart.seller_name?.toLowerCase().includes(sellerFilter.toLowerCase())
+      )
+    }
+    
+    // Calcular métricas baseadas nos dados filtrados
+    const now = new Date()
+    const abandonmentThreshold = abandonmentHours * 60 * 60 * 1000 // em milliseconds
+    
+    const inProgressCarts = carts.filter((cart: ShoppingCart) => {
+      const updatedAt = new Date(cart.updated_at)
+      return (now.getTime() - updatedAt.getTime()) < abandonmentThreshold
     })
-  }
-
-  if (clientFilter) {
-    carts = carts.filter((cart: ShoppingCart) => 
-      cart.partner_name?.toLowerCase().includes(clientFilter.toLowerCase())
-    )
-  }
-
-  if (sellerFilter) {
-    carts = carts.filter((cart: ShoppingCart) => 
-      cart.seller_name?.toLowerCase().includes(sellerFilter.toLowerCase())
-    )
-  }
-  
-  // Calcular métricas baseadas nos dados filtrados
-  const now = new Date()
-  const abandonmentThreshold = abandonmentHours * 60 * 60 * 1000 // em milliseconds
-  
-  const inProgressCarts = carts.filter((cart: ShoppingCart) => {
-    const updatedAt = new Date(cart.updated_at)
-    return (now.getTime() - updatedAt.getTime()) < abandonmentThreshold
-  })
-  
-  const abandonedCarts = carts.filter((cart: ShoppingCart) => {
-    const updatedAt = new Date(cart.updated_at)
-    return (now.getTime() - updatedAt.getTime()) >= abandonmentThreshold
-  })
-  
-  const totalValue = carts.reduce((sum: number, cart: ShoppingCart) => sum + cart.total, 0)
-  const totalValueInProgress = inProgressCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.total, 0)
-  const totalValueAbandoned = abandonedCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.total, 0)
-  
-  const totalItems = carts.reduce((sum: number, cart: ShoppingCart) => sum + cart.items.length, 0)
-  const totalItemsInProgress = inProgressCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.items.length, 0)
-  const totalItemsAbandoned = abandonedCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.items.length, 0)
-  
-  const uniqueCustomers = new Set(carts.map((cart: ShoppingCart) => cart.user_id)).size
-  const abandonmentRate = carts.length > 0 ? (abandonedCarts.length / carts.length) * 100 : 0
-  
-  return {
-    totalOnlineCarts: carts.length,
-    totalInProgressCarts: inProgressCarts.length,
-    totalAbandonedCarts: abandonedCarts.length,
-    totalValue,
-    totalValueInProgress,
-    totalValueAbandoned,
-    totalItems,
-    totalItemsInProgress,
-    totalItemsAbandoned,
-    abandonmentRate,
-    uniqueCustomers,
-    averageTime: "2h 30m", // Placeholder - pode ser calculado baseado nos dados
-    recoveryRate: 15.2, // Placeholder - pode ser calculado baseado nos dados
+    
+    const abandonedCarts = carts.filter((cart: ShoppingCart) => {
+      const updatedAt = new Date(cart.updated_at)
+      return (now.getTime() - updatedAt.getTime()) >= abandonmentThreshold
+    })
+    
+    const totalOnlineCarts = carts.length
+    const totalInProgressCarts = inProgressCarts.length
+    const totalAbandonedCarts = abandonedCarts.length
+    
+    const totalValue = carts.reduce((sum: number, cart: ShoppingCart) => sum + cart.total, 0)
+    const totalValueInProgress = inProgressCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.total, 0)
+    const totalValueAbandoned = abandonedCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.total, 0)
+    
+    const totalItems = carts.reduce((sum: number, cart: ShoppingCart) => sum + cart.items.length, 0)
+    const totalItemsInProgress = inProgressCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.items.length, 0)
+    const totalItemsAbandoned = abandonedCarts.reduce((sum: number, cart: ShoppingCart) => sum + cart.items.length, 0)
+    
+    const abandonmentRate = totalOnlineCarts > 0 ? (totalAbandonedCarts / totalOnlineCarts) * 100 : 0
+    
+    // Calcular clientes únicos
+    const uniqueCustomers = new Set(carts.map((cart: ShoppingCart) => cart.partner_id).filter(Boolean)).size
+    
+    return {
+      totalOnlineCarts,
+      totalInProgressCarts,
+      totalAbandonedCarts,
+      totalValue,
+      totalValueInProgress,
+      totalValueAbandoned,
+      totalItems,
+      totalItemsInProgress,
+      totalItemsAbandoned,
+      abandonmentRate,
+      uniqueCustomers,
+      averageTime: "2h 30m", // Placeholder - pode ser calculado baseado nos dados
+      recoveryRate: 15.2, // Placeholder - pode ser calculado baseado nos dados
+    }
+  } catch (error) {
+    console.error("Erro ao processar dados dos carrinhos:", error);
+    // Retornar dados padrão em caso de erro
+    return {
+      totalOnlineCarts: 0,
+      totalInProgressCarts: 0,
+      totalAbandonedCarts: 0,
+      totalValue: 0,
+      totalValueInProgress: 0,
+      totalValueAbandoned: 0,
+      totalItems: 0,
+      totalItemsInProgress: 0,
+      totalItemsAbandoned: 0,
+      abandonmentRate: 0,
+      uniqueCustomers: 0,
+      averageTime: "0h 0m",
+      recoveryRate: 0,
+    };
   }
 }
 
