@@ -3,6 +3,7 @@ import { Box, Button, Chip, Grid, InputAdornment, Stack,TextField, Typography } 
 import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 
 import { ClientsChart } from './clients-chart';
+import { DebugInfo } from './debug-info';
 import { MetricsCards } from './metrics-cards';
 import { ProfilesChart } from './profiles-chart';
 import { RecentCarts } from './recent-carts';
@@ -242,6 +243,8 @@ export const AbandonedCartsOverview = () => {
         </Box>
       </Box>
 
+      <DebugInfo />
+      
       <Box sx={{ mb: 2 }}>
         <MetricsCards
           timeRange={timeRange}

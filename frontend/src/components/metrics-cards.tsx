@@ -58,6 +58,15 @@ export const MetricsCards = ({
     const loadMetrics = async () => {
       setIsLoading(true);
       try {
+        console.log('🔄 Carregando métricas com parâmetros:', {
+          timeRange,
+          startDate,
+          endDate,
+          clientFilter,
+          sellerFilter,
+          abandonmentHours,
+        });
+        
         const data = await getShoppingCarts({
           timeRange,
           startDate,
@@ -66,9 +75,27 @@ export const MetricsCards = ({
           sellerFilter,
           abandonmentHours,
         });
+        
+        console.log('✅ Métricas carregadas:', data);
         setMetrics(data);
       } catch (error) {
-        console.error('Erro ao carregar métricas:', error);
+        console.error('❌ Erro ao carregar métricas:', error);
+        // Manter os valores padrão em caso de erro
+        setMetrics({
+          totalOnlineCarts: 0,
+          totalInProgressCarts: 0,
+          totalAbandonedCarts: 0,
+          totalValue: 0,
+          totalValueInProgress: 0,
+          totalValueAbandoned: 0,
+          totalItems: 0,
+          totalItemsInProgress: 0,
+          totalItemsAbandoned: 0,
+          abandonmentRate: 0,
+          uniqueCustomers: 0,
+          averageTime: '0h 0m',
+          recoveryRate: 0,
+        });
       } finally {
         setIsLoading(false);
       }

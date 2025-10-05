@@ -38,9 +38,19 @@ import { getToken } from '@zydon/auth';
 const API_BASE_URL = 'https://api.zydon.com.br/api';
 
 const getAuthHeaders = (): Record<string, string> => {
-  return {
-      'Authorization': 'Bearer ' + getToken()
+  const token = getToken();
+  
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    'User-Agent': 'Zydon-Plugin-Carrinho/1.0'
+  };
+  
+  // Só adiciona Authorization se o token existir
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
+  
+  return headers;
 } 
 
 // Dados mockados no formato da API Zydon
@@ -829,20 +839,31 @@ export const mockData = {
 // Função para buscar dados brutos da API
 export async function getShoppingCartsRaw(page: string = "0", perPage: string = "20") {
   try {
-    const response = await fetch(`${API_BASE_URL}/portaladmin/v2/shopping-carts?page=${page}&perPage=${perPage}`, {
+    const headers = getAuthHeaders();
+    const url = `${API_BASE_URL}/portaladmin/v2/shopping-carts?page=${page}&perPage=${perPage}`;
+    
+    console.log('🚀 Fazendo requisição para:', url);
+    console.log('📋 Headers:', headers);
+    
+    const response = await fetch(url, {
       method: "GET",
-      headers: getAuthHeaders(),
+      headers: headers,
     })
+    
+    console.log('📡 Resposta da API:', response.status, response.statusText);
     
     if (!response.ok) {
       const errorText = await response.text()
+      console.error('❌ Erro da API:', errorText);
       throw new Error(`API retornou status ${response.status}: ${errorText}`)
     }
 
     const data = await response.json()
+    console.log('✅ Dados recebidos:', data);
     return data
   } catch (error: any) {
-    console.error("Erro ao conectar com API Zydon:", error.message)
+    console.error("❌ Erro ao conectar com API Zydon:", error.message)
+    console.log("🔄 Usando dados mockados temporariamente");
     // Retornando dados mockados temporariamente
     return mockData
   }
