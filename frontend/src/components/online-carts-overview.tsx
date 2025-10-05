@@ -9,13 +9,13 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 
-import { ClientsChart } from './clients-chart';
+// import { ClientsChart } from './clients-chart'; // TEMPORARIAMENTE COMENTADO
 import { MetricsCards } from './metrics-cards';
-import { ProfilesChart } from './profiles-chart';
+// import { ProfilesChart } from './profiles-chart'; // TEMPORARIAMENTE COMENTADO
 // import { RecentCarts } from './recent-carts'; // TEMPORARIAMENTE COMENTADO
-import { SellersChart } from './sellers-chart';
+// import { SellersChart } from './sellers-chart'; // TEMPORARIAMENTE COMENTADO
 // import { TopProductsChart } from './top-products-chart'; // TEMPORARIAMENTE COMENTADO
-import { UsersChart } from './users-chart';
+// import { UsersChart } from './users-chart'; // TEMPORARIAMENTE COMENTADO
 
 export const AbandonedCartsOverview = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -260,6 +260,8 @@ export const AbandonedCartsOverview = () => {
         />
       </Box>
 
+      {/* TEMPORARIAMENTE COMENTADO - Todos os Gráficos */}
+      {/* 
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <UsersChart
@@ -305,6 +307,7 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
+      */}
 
       {/* TEMPORARIAMENTE COMENTADO - Top 20 Produtos */}
       {/* 
