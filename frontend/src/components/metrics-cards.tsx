@@ -6,16 +6,16 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import {
-  Activity,
-  DollarSign,
-  Package,
-  Pause,
-  ShoppingCart,
-  TrendingDown,
-  TrendingUp,
-  Users,
-} from 'lucide-react';
+import { 
+  Activity, 
+  AttachMoney, 
+  Inventory, 
+  Pause, 
+  ShoppingCart, 
+  TrendingDown, 
+  TrendingUp, 
+  People 
+} from '@mui/icons-material';
 
 import { getShoppingCarts } from '../services/api';
 interface MetricsCardsProps {
@@ -129,12 +129,12 @@ export const MetricsCards = ({
             : `R$ ${metrics.totalValue.toLocaleString('pt-BR', {
                 minimumFractionDigits: 2,
               })}`,
-          icon: DollarSign,
+          icon: AttachMoney,
         },
         {
           label: 'Qtd de Itens',
           value: isLoading ? '...' : metrics.totalItems.toLocaleString(),
-          icon: Package,
+          icon: Inventory,
         },
       ],
     },
@@ -153,14 +153,14 @@ export const MetricsCards = ({
             : `R$ ${metrics.totalValueInProgress.toLocaleString('pt-BR', {
                 minimumFractionDigits: 2,
               })}`,
-          icon: DollarSign,
+          icon: AttachMoney,
         },
         {
           label: 'Qtd de Itens',
           value: isLoading
             ? '...'
             : metrics.totalItemsInProgress.toLocaleString(),
-          icon: Package,
+          icon: Inventory,
         },
       ],
     },
@@ -179,14 +179,14 @@ export const MetricsCards = ({
             : `R$ ${metrics.totalValueAbandoned.toLocaleString('pt-BR', {
                 minimumFractionDigits: 2,
               })}`,
-          icon: DollarSign,
+          icon: AttachMoney,
         },
         {
           label: 'Qtd de Itens',
           value: isLoading
             ? '...'
             : metrics.totalItemsAbandoned.toLocaleString(),
-          icon: Package,
+          icon: Inventory,
         },
       ],
     },
@@ -215,7 +215,7 @@ export const MetricsCards = ({
       value: isLoading ? '...' : metrics.uniqueCustomers.toLocaleString(),
       change: '+5.8%',
       trend: 'up',
-      icon: Users,
+      icon: People,
       description: 'com carrinhos online',
     },
   ];

@@ -19,7 +19,7 @@ import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { getShoppingCartsRaw } from "../services/api"
-import { Clock, Eye } from "lucide-react"
+import { Schedule, Visibility } from '@mui/icons-material';
 
 interface ShoppingCart {
   id: string

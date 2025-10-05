@@ -7,7 +7,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
+import { Schedule, Refresh, Person, PersonAdd, Close } from '@mui/icons-material';
 
 import { ClientsChart } from './clients-chart';
 import { MetricsCards } from './metrics-cards';
@@ -100,7 +100,6 @@ export const AbandonedCartsOverview = () => {
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <TextField
                 label="Horas para Abandono"
-                type="number"
                 size="small"
                 fullWidth
                 value={abandonmentHours}
@@ -108,7 +107,7 @@ export const AbandonedCartsOverview = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Clock size={16} />
+                      <Schedule fontSize="small" />
                     </InputAdornment>
                   ),
                   inputProps: { min: 1, max: 168 },
@@ -150,7 +149,7 @@ export const AbandonedCartsOverview = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <User size={16} />
+                      <Person fontSize="small" />
                     </InputAdornment>
                   ),
                 }}
@@ -167,7 +166,7 @@ export const AbandonedCartsOverview = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <UserCheck size={16} />
+                      <PersonAdd fontSize="small" />
                     </InputAdornment>
                   ),
                 }}

@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
-import { UserCheck } from "lucide-react"
+import { PersonAdd } from '@mui/icons-material';
 import { getShoppingCartsRaw } from "../services/api"
 
 interface SellersChartProps {

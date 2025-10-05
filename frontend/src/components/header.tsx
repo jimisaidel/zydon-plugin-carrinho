@@ -1,4 +1,4 @@
-import { ShoppingCart, Sun, Moon } from "lucide-react"
+import { ShoppingCart, LightMode, DarkMode } from '@mui/icons-material';
 import { useTheme } from "./theme-provider"
 import { useEffect, useState } from "react"
 import AppBar from '@mui/material/AppBar';
@@ -94,14 +94,13 @@ export function Header() {
           onClick={toggleTheme}
           sx={{ 
             width: { xs: 32, sm: 36 }, 
-            height: { xs: 32, sm: 36 },
             '&:hover': {
               backgroundColor: 'action.hover'
             }
           }}
           aria-label="Alternar tema"
         >
-          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          {theme === 'light' ? <DarkMode /> : <LightMode />}
         </IconButton>
       </Toolbar>
     </StyledAppBar>

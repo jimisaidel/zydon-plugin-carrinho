@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { ShoppingCart, ChevronLeft, ChevronRight, Sun, Moon } from "lucide-react"
+import { ShoppingCart, ChevronLeft, ChevronRight, LightMode, DarkMode } from '@mui/icons-material';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -69,7 +69,7 @@ export function Sidebar() {
         {!collapsed && (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <LogoContainer>
-              <ShoppingCart size={20} color="white" />
+              <ShoppingCart sx={{ color: 'white' }} />
             </LogoContainer>
             <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               GC - Gestão de Carrinhos
@@ -81,7 +81,7 @@ export function Sidebar() {
           size="small"
           sx={{ ml: collapsed ? 0 : 'auto' }}
         >
-          {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          {collapsed ? <ChevronRight /> : <ChevronLeft />}
         </IconButton>
       </Box>
 
@@ -98,7 +98,7 @@ export function Sidebar() {
             }}
           >
             <ListItemIcon sx={{ minWidth: collapsed ? 'auto' : 40, color: 'inherit' }}>
-              <ShoppingCart size={20} />
+              <ShoppingCart />
             </ListItemIcon>
             {!collapsed && <ListItemText primary="Carrinhos" />}
           </ListItemButton>
@@ -117,13 +117,12 @@ export function Sidebar() {
             size="small"
             sx={{ ml: collapsed ? 0 : 'auto' }}
           >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === 'light' ? <DarkMode /> : <LightMode />}
           </IconButton>
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Avatar sx={{ width: 32, height: 32, bgcolor: 'action.selected' }}>
-            <Typography variant="body2">U</Typography>
           </Avatar>
           {!collapsed && (
             <Box sx={{ ml: 1.5 }}>

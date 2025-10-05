@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { UserCheck } from 'lucide-react';
+import { PersonAdd } from '@mui/icons-material';
 import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
 import { BarChart } from "recharts/lib/chart/BarChart";
 import { Bar } from "recharts/lib/cartesian/Bar";

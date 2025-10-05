@@ -14,7 +14,7 @@ import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
 import { Tooltip } from "recharts/lib/component/Tooltip";
 import { LabelList } from "recharts/lib/component/LabelList";
 import { getShoppingCartsRaw } from "../services/api"
-import { Building2 } from "lucide-react"
+import { Business } from '@mui/icons-material';
 
 interface ClientsChartProps {
   timeRange: string

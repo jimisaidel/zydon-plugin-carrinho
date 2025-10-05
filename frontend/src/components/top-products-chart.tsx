@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { ArrowLeft,Building, Package, User, UserCheck, Users } from 'lucide-react';
+import { ArrowBack, Business, Inventory, Person, PersonAdd, People } from '@mui/icons-material';
 import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
 import { BarChart } from "recharts/lib/chart/BarChart";
 import { Bar } from "recharts/lib/cartesian/Bar";
