@@ -32,15 +32,16 @@ interface ShoppingCart {
   items: CartItem[]
 }
 
-// Interface removida - não utilizada
+import { getToken } from '@zydon/auth';
 
-const API_BASE_URL = "/store/apps/zydon-plugin-name/api/portaladmin/v2"
-const API_HEADERS = {
-  "User-Agent": "Zydon-Dashboard/1.0",
-  "X-Zydon-Access-Key-Code": (import.meta as any).env?.VITE_ZYDON_API_KEY || "",
-  "X-Zydon-Access-Key-Token": (import.meta as any).env?.VITE_ZYDON_ACCESS_TOKEN || "",
-  "Content-Type": "application/json",
-}
+// Base URL da API do Plugin Carrinho
+const API_BASE_URL = 'https://api.zydon.com.br/api';
+
+const getAuthHeaders = (): Record<string, string> => {
+  return {
+      'Authorization': 'Bearer ' + getToken()
+  }
+} 
 
 // Dados mockados no formato da API Zydon
 export const mockData = {
@@ -828,9 +829,9 @@ export const mockData = {
 // Função para buscar dados brutos da API
 export async function getShoppingCartsRaw(page: string = "0", perPage: string = "20") {
   try {
-    const response = await fetch(`${API_BASE_URL}/shopping-carts?page=${page}&perPage=${perPage}`, {
+    const response = await fetch(`${API_BASE_URL}/b2b/shopping-carts?page=${page}&perPage=${perPage}`, {
       method: "GET",
-      headers: API_HEADERS,
+      headers: getAuthHeaders(),
     })
     
     if (!response.ok) {
