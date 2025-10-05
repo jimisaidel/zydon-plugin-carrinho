@@ -1,6 +1,6 @@
 version: "1.0.0"
 auth:
-  type: "basic"
+  type: "none"
   client_id: ""
   callback_uri: ""
 entry_points:
@@ -9,14 +9,6 @@ entry_points:
     route: "/"
 
 admin_launchers:
-  id: "admin-launcher-01"
-  name: "Menu do Plugin 01"
+  id: "gestao-de-carrinhos"
+  name: "Gestão de Carrinhos"
   route: "/"
-  childs:
-    - id: "admin-launcher-child-01"
-      name: "Submenu do Plugin 01"
-      route: "/1"
-
-    - id: "admin-launcher-child-02"
-      name: "Submenu do Plugin 02"
-      route: "/2"
