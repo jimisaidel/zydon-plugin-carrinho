@@ -12,7 +12,7 @@ import { Schedule, Refresh, Person, PersonAdd, Close } from '@mui/icons-material
 // import { ClientsChart } from './clients-chart'; // COMENTADO PARA TESTE
 import { MetricsCards } from './metrics-cards';
 // import { ProfilesChart } from './profiles-chart'; // COMENTADO PARA TESTE
-// import { RecentCarts } from './recent-carts'; // COMENTADO PARA TESTE
+import { RecentCarts } from './recent-carts';
 // import { SellersChart } from './sellers-chart'; // COMENTADO PARA TESTE
 // import { TopProductsChart } from './top-products-chart'; // COMENTADO PARA TESTE
 // import { UsersChart } from './users-chart'; // COMENTADO PARA TESTE
@@ -323,6 +323,9 @@ export const AbandonedCartsOverview = () => {
         </Grid>
       </Grid>
 
+      */}
+
+      {/* Lista de Carrinhos Recentes - Mantida Ativa */}
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <RecentCarts
@@ -334,7 +337,6 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
-      */}
     </Box>
   );
 };
