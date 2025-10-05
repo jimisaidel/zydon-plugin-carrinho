@@ -1,4 +1,7 @@
-import { Card, CardContent, styled,Typography } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import {
   Bar,
   BarChart,

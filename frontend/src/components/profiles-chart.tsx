@@ -1,5 +1,10 @@
 import { useEffect,useState } from 'react';
-import { Box, Card, CardContent, CircularProgress, styled,Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CircularProgress from '@mui/material/CircularProgress';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import { UserCheck } from 'lucide-react';
 import { Bar, BarChart, CartesianGrid, LabelList,ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 

@@ -1,7 +1,9 @@
-import { Card as MuiCard, CardContent as MuiCardContent, CardHeader as MuiCardHeader } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
 
-export const Card = MuiCard;
-export const CardContent = MuiCardContent;
-export const CardHeader = MuiCardHeader;
+export { Card };
+export { CardContent };
+export { CardHeader };
 export const CardTitle = ({ children, ...props }: any) => <h3 {...props}>{children}</h3>;
 export const CardDescription = ({ children, ...props }: any) => <p {...props}>{children}</p>;

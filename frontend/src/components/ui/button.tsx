@@ -1,5 +1,6 @@
-import { Button as MuiButton, ButtonProps } from '@mui/material';
+import Button from '@mui/material/Button';
+import type { ButtonProps } from '@mui/material/Button';
 
-export const Button = MuiButton;
+export { Button };
 export type { ButtonProps };
 export const buttonVariants = () => ({});

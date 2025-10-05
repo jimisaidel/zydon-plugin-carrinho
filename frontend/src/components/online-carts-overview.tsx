@@ -1,5 +1,12 @@
 import { useEffect,useState } from 'react';
-import { Box, Button, Chip, Grid, InputAdornment, Stack,TextField, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid';
+import InputAdornment from '@mui/material/InputAdornment';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 
 import { ClientsChart } from './clients-chart';

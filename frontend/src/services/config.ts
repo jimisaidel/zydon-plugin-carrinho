@@ -1,4 +1,4 @@
-import { getAuthData } from '@zydon/auth';
+import * as ZydonAuth from '@zydon/auth';
 
 // Configurações da API
 export const API_CONFIG = {
@@ -18,7 +18,7 @@ export const API_CONFIG = {
 
 // Função para obter headers de autenticação padrão
 export const getDefaultHeaders = () => {
-  const { organization_id } = getAuthData() ?? {};
+  const { organization_id } = ZydonAuth.getAuthData() ?? {};
   
   return {
     'Content-Type': 'application/json',

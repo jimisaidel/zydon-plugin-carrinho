@@ -1,14 +1,12 @@
-import { 
-  Table as MuiTable, 
-  TableBody as MuiTableBody, 
-  TableCell as MuiTableCell, 
-  TableHead as MuiTableHead, 
-  TableRow as MuiTableRow 
-} from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
-export const Table = MuiTable;
-export const TableBody = MuiTableBody;
-export const TableCell = MuiTableCell;
-export const TableHead = MuiTableHead;
-export const TableHeader = MuiTableHead;
-export const TableRow = MuiTableRow;
+export { Table };
+export { TableBody };
+export { TableCell };
+export { TableHead };
+export const TableHeader = TableHead;
+export { TableRow };
