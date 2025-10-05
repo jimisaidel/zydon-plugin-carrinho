@@ -9,13 +9,13 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 
-// import { ClientsChart } from './clients-chart'; // TEMPORARIAMENTE COMENTADO
+import { ClientsChart } from './clients-chart';
 import { MetricsCards } from './metrics-cards';
-// import { ProfilesChart } from './profiles-chart'; // TEMPORARIAMENTE COMENTADO
+import { ProfilesChart } from './profiles-chart';
 import { RecentCarts } from './recent-carts';
-// import { SellersChart } from './sellers-chart'; // TEMPORARIAMENTE COMENTADO
-// import { TopProductsChart } from './top-products-chart'; // TEMPORARIAMENTE COMENTADO
-// import { UsersChart } from './users-chart'; // TEMPORARIAMENTE COMENTADO
+import { SellersChart } from './sellers-chart';
+import { TopProductsChart } from './top-products-chart';
+import { UsersChart } from './users-chart';
 
 export const AbandonedCartsOverview = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -260,8 +260,7 @@ export const AbandonedCartsOverview = () => {
         />
       </Box>
 
-      {/* TODOS OS GRÁFICOS COMENTADOS */}
-      {/* 
+      {/* Gráficos Reativados - Barrel Imports Corrigidos! */}
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <UsersChart
@@ -273,28 +272,42 @@ export const AbandonedCartsOverview = () => {
             abandonmentHours={abandonmentHours}
           />
         </Grid>
-      </Grid>
-      */}
-      
-      {/* Outros gráficos ainda comentados */}
-      {/* 
-      <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <ClientsChart />
-        </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <ProfilesChart />
+          <ClientsChart
+            timeRange={timeRange}
+            startDate={startDate}
+            endDate={endDate}
+            clientFilter={clientFilter}
+            sellerFilter={sellerFilter}
+            abandonmentHours={abandonmentHours}
+          />
         </Grid>
       </Grid>
-      <Grid container spacing={2} sx={{ mb: 2 }}>
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <SellersChart />
-        </Grid>
-      </Grid>
-      */}
 
-      {/* TEMPORARIAMENTE COMENTADO - Top 20 Produtos */}
-      {/* 
+      <Grid container spacing={2} sx={{ mb: 2 }}>
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          <ProfilesChart
+            timeRange={timeRange}
+            startDate={startDate}
+            endDate={endDate}
+            clientFilter={clientFilter}
+            sellerFilter={sellerFilter}
+            abandonmentHours={abandonmentHours}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          <SellersChart
+            timeRange={timeRange}
+            startDate={startDate}
+            endDate={endDate}
+            abandonmentHours={abandonmentHours}
+            clientFilter={clientFilter}
+            sellerFilter={sellerFilter}
+          />
+        </Grid>
+      </Grid>
+
+      {/* Top 20 Produtos - Reativado */}
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12}>
           <TopProductsChart
@@ -307,9 +320,8 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
-      */}
 
-      {/* Lista de Carrinhos - TESTANDO COM BARREL IMPORTS CORRIGIDOS */}
+      {/* Lista de Carrinhos Recentes - Funcionando */}
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <RecentCarts
