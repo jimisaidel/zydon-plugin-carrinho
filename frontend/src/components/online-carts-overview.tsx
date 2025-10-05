@@ -12,9 +12,9 @@ import { Clock,RefreshCw, User, UserCheck, X } from 'lucide-react';
 import { ClientsChart } from './clients-chart';
 import { MetricsCards } from './metrics-cards';
 import { ProfilesChart } from './profiles-chart';
-import { RecentCarts } from './recent-carts';
+// import { RecentCarts } from './recent-carts'; // TEMPORARIAMENTE COMENTADO
 import { SellersChart } from './sellers-chart';
-import { TopProductsChart } from './top-products-chart';
+// import { TopProductsChart } from './top-products-chart'; // TEMPORARIAMENTE COMENTADO
 import { UsersChart } from './users-chart';
 
 export const AbandonedCartsOverview = () => {
@@ -306,6 +306,8 @@ export const AbandonedCartsOverview = () => {
         </Grid>
       </Grid>
 
+      {/* TEMPORARIAMENTE COMENTADO - Top 20 Produtos */}
+      {/* 
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12}>
           <TopProductsChart
@@ -318,7 +320,10 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
+      */}
 
+      {/* TEMPORARIAMENTE COMENTADO - Lista de Carrinhos Recentes */}
+      {/* 
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <RecentCarts
@@ -330,6 +335,7 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
+      */}
     </Box>
   );
 };
