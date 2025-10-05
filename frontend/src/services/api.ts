@@ -842,28 +842,20 @@ export async function getShoppingCartsRaw(page: string = "0", perPage: string = 
     const headers = getAuthHeaders();
     const url = `${API_BASE_URL}/portaladmin/v2/shopping-carts?page=${page}&perPage=${perPage}`;
     
-    console.log('🚀 Fazendo requisição para:', url);
-    console.log('📋 Headers:', headers);
-    
     const response = await fetch(url, {
       method: "GET",
       headers: headers,
     })
     
-    console.log('📡 Resposta da API:', response.status, response.statusText);
-    
     if (!response.ok) {
       const errorText = await response.text()
-      console.error('❌ Erro da API:', errorText);
       throw new Error(`API retornou status ${response.status}: ${errorText}`)
     }
 
     const data = await response.json()
-    console.log('✅ Dados recebidos:', data);
     return data
   } catch (error: any) {
-    console.error("❌ Erro ao conectar com API Zydon:", error.message)
-    console.log("🔄 Usando dados mockados temporariamente");
+    console.error("Erro ao conectar com API Zydon:", error.message);
     // Retornando dados mockados temporariamente
     return mockData
   }

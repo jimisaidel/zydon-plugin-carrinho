@@ -58,15 +58,6 @@ export const MetricsCards = ({
     const loadMetrics = async () => {
       setIsLoading(true);
       try {
-        console.log('🔄 Carregando métricas com parâmetros:', {
-          timeRange,
-          startDate,
-          endDate,
-          clientFilter,
-          sellerFilter,
-          abandonmentHours,
-        });
-        
         const data = await getShoppingCarts({
           timeRange,
           startDate,
@@ -76,10 +67,9 @@ export const MetricsCards = ({
           abandonmentHours,
         });
         
-        console.log('✅ Métricas carregadas:', data);
         setMetrics(data);
       } catch (error) {
-        console.error('❌ Erro ao carregar métricas:', error);
+        console.error('Erro ao carregar métricas:', error);
         // Manter os valores padrão em caso de erro
         setMetrics({
           totalOnlineCarts: 0,
