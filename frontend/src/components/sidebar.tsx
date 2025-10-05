@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react"
 import { ShoppingCart, ChevronLeft, ChevronRight, Sun, Moon } from "lucide-react"
-import { 
-  Drawer, 
-  Box, 
-  Typography, 
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Avatar
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import { styled } from '@mui/material/styles';
 
 // Mock useTheme hook for now
 const useTheme = () => ({
