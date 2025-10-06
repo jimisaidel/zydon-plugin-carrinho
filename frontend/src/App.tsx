@@ -15,11 +15,11 @@ const App = () => (
       appView={<AppPlugin />}
       checkoutView={<AppCheckout />}
       productDetailView={<AppProductDetail />}
-      newOrderView={<div>New Order View</div>}
-      productDetailActionsView={<div>Product Detail Actions</div>}
-      productsListView={<div>Products List View</div>}
-      productsListItemView={<div>Products List Item View</div>}
-      screenView={<div>Screen View</div>}
+      newOrderView={<></>}
+      productDetailActionsView={<></>}
+      productsListView={<></>}
+      productsListItemView={<></>}
+      screenView={<></>}
     />
   </Common>
 );

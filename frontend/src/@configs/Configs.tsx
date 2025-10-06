@@ -2,6 +2,7 @@ import { RouterProvider } from 'react-router-dom';
 import { Authed } from '@zydon/auth';
 import Common from '@zydon/common/components/Common';
 
+import RouterSync from './RouterSync';
 import router from './routes';
 
 import './style.css';
@@ -16,6 +17,7 @@ const Configs = () => {
     >
       <Common primaryColor="#4E5BEC" cssVarPrefix="configs">
         <RouterProvider router={router} />
+        <RouterSync />
       </Common>
     </Authed>
   );

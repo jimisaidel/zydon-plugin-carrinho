@@ -28,7 +28,7 @@
     "@mui/x-date-pickers-pro": "7.14.0",
     "@types/node": "^24.6.2",
     "@zydon/auth": "^2.0.7",
-    "@zydon/common": "^2.6.17",
+    "@zydon/common": "^2.6.33",
     "chart.js": "^4.5.0",
     "hugeicons-react": "^0.3.0",
     "jest-fetch-mock": "^3.0.3",

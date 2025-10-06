@@ -2391,10 +2391,10 @@
     mitt "^3.0.1"
     universal-cookie "^7.2.0"
 
-"@zydon/common@^2.6.17":
-  version "2.6.79"
-  resolved "https://registry.yarnpkg.com/@zydon/common/-/common-2.6.79.tgz#2f2ffed5a47a27b83bbc6e0f8c740a1084835cb0"
-  integrity sha512-P57+m9EE8qK5nQGsbc5dbawnS9j7D48oH+FvtLQi5XHPSnwj7Ztup4DJIDKPX55XdmqavFqOjVQKSvDug5CXNg==
+"@zydon/common@^2.6.33":
+  version "2.6.80"
+  resolved "https://registry.yarnpkg.com/@zydon/common/-/common-2.6.80.tgz#c488d9fb654d9be8d69578efc74a34aa3fecafb9"
+  integrity sha512-nL7Gsq6UCneUqaU4aRf2mx86UDOxEAvlceaqeiJ0GpRxa56A9BrVHIExMLr7nYcvr09rh0OvBzWC8L/Uep/6mA==
   dependencies:
     "@dnd-kit/core" "^6.3.1"
     "@dnd-kit/modifiers" "^9.0.0"
