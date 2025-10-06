@@ -9,13 +9,13 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Schedule, Refresh, Person, PersonAdd, Close } from '@mui/icons-material';
 
-// import { ClientsChart } from './clients-chart'; // COMENTADO PARA TESTE
+import { ClientsChart } from './clients-chart';
 import { MetricsCards } from './metrics-cards';
-// import { ProfilesChart } from './profiles-chart'; // COMENTADO PARA TESTE
+import { ProfilesChart } from './profiles-chart';
 import { RecentCarts } from './recent-carts';
-// import { SellersChart } from './sellers-chart'; // COMENTADO PARA TESTE
-// import { TopProductsChart } from './top-products-chart'; // COMENTADO PARA TESTE
-// import { UsersChart } from './users-chart'; // COMENTADO PARA TESTE
+import { SellersChart } from './sellers-chart';
+import { TopProductsChart } from './top-products-chart';
+import { UsersChart } from './users-chart';
 
 export const AbandonedCartsOverview = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -262,8 +262,7 @@ export const AbandonedCartsOverview = () => {
         />
       </Box>
 
-      {/* TODOS OS GRÁFICOS E LISTAS COMENTADOS PARA TESTE */}
-      {/* 
+      {/* Gráficos Reativados - Agora com Chart.js! */}
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <UsersChart
@@ -322,8 +321,6 @@ export const AbandonedCartsOverview = () => {
           />
         </Grid>
       </Grid>
-
-      */}
 
       {/* Lista de Carrinhos Recentes - Mantida Ativa */}
       <Grid container spacing={2}>
