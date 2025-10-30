@@ -49,7 +49,7 @@ export function SellersChart({ timeRange, startDate, endDate, abandonmentHours, 
     const loadData = async () => {
       try {
         setIsLoading(true)
-        const response = await getShoppingCartsRaw("0", "1000")
+        const response = await getShoppingCartsRaw()
         let carts = response.items || []
         
         // Filtrar carrinhos com total > 0

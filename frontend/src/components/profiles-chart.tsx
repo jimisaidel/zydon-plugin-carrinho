@@ -57,7 +57,7 @@ export const ProfilesChart = ({
       setIsLoading(true);
       try {
         // Buscar todos os carrinhos independente do status
-        const response = await getShoppingCartsRaw('0', '1000'); // Buscar todos os carrinhos
+        const response = await getShoppingCartsRaw(); // Buscar todos os carrinhos
 
         if (!response || !response.items || !Array.isArray(response.items)) {
           console.log('Dados inválidos para gráfico de perfis');

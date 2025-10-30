@@ -73,7 +73,7 @@ export function RecentCarts({
       
       setLoading(true)
       try {
-        const response = await getShoppingCartsRaw("0", "1000")
+        const response = await getShoppingCartsRaw()
         let filteredCarts = response.items
         
         // Filtrar carrinhos com total > 0

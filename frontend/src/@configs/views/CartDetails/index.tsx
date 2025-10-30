@@ -24,9 +24,9 @@ interface ShoppingCart {
   portal_id: string
   user_id: string
   user_name: string
-  user_profile: 'PARTNER' | 'SELLER'
-  partner_id: string
-  partner_name: string
+  user_profile: string | null
+  partner_id: string | null
+  partner_name: string | null
   seller_id: string | null
   seller_name: string | null
   total: number
@@ -64,7 +64,7 @@ export default function CartDetailsPage() {
     const loadCartDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetchShoppingCarts(0, 1000);
+        const response = await fetchShoppingCarts();
 
         // Se não encontrar o carrinho específico, usar o primeiro carrinho disponível
         let foundCart = response.items?.find((c: any) => c.id === cartId);

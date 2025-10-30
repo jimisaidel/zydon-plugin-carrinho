@@ -836,24 +836,42 @@ export const mockData = {
   },
 }
 
-// Função para buscar dados brutos da API
-export async function getShoppingCartsRaw(page: string = "0", perPage: string = "20") {
+// Função para buscar dados brutos da API com paginação automática
+export async function getShoppingCartsRaw() {
   try {
     const headers = getAuthHeaders();
-    const url = `${API_BASE_URL}/portaladmin/v2/shopping-carts?page=${page}&perPage=${perPage}`;
+    const perPage = 200;
+    let page = 0;
+    let allItems: ShoppingCart[] = [];
+    let hasMoreData = true;
     
-    const response = await fetch(url, {
-      method: "GET",
-      headers: headers,
-    })
-    
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`API retornou status ${response.status}: ${errorText}`)
-    }
+    while (hasMoreData) {
+      const url = `${API_BASE_URL}/portaladmin/v2/shopping-carts?page=${page}&perPage=${perPage}`;
+      
+      const response = await fetch(url, {
+        method: "GET",
+        headers: headers,
+      })
+      
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(`API retornou status ${response.status}: ${errorText}`)
+      }
 
-    const data = await response.json()
-    return data
+      const data = await response.json()
+      const items = data.items || [];
+      
+      allItems = [...allItems, ...items];
+      
+      // Verificar se ainda há mais dados
+      hasMoreData = items.length === perPage;
+      page++;
+    }
+    
+    return {
+      items: allItems,
+      total: allItems.length
+    };
   } catch (error: any) {
     console.error("Erro ao conectar com API Zydon:", error.message);
     throw error;
@@ -872,8 +890,8 @@ export async function getShoppingCarts(params: {
   const { abandonmentHours = 24, clientFilter, sellerFilter, startDate, endDate } = params
   
   try {
-    // Buscar dados brutos - usar 1000 para pegar todos os carrinhos disponíveis
-    const rawData = await getShoppingCartsRaw("0", "1000")
+    // Buscar dados brutos com paginação automática
+    const rawData = await getShoppingCartsRaw()
     let carts = rawData.items || []
     
     // Filtrar carrinhos com total > 0
@@ -979,7 +997,7 @@ export async function getShoppingCarts(params: {
 }
 
 // Alias para compatibilidade
-export async function fetchShoppingCarts(page: number = 0, perPage: number = 20) {
-  const response = await getShoppingCartsRaw(page.toString(), perPage.toString())
+export async function fetchShoppingCarts() {
+  const response = await getShoppingCartsRaw()
   return response
 }
