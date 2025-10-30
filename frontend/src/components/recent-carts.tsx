@@ -173,23 +173,49 @@ export function RecentCarts({
         'Nome do Vendedor': cart.seller_name || '-',
         'Qtd SKU': qtdSku,
         'Qtd Itens': qtdItens,
-        'Total': `R$ ${cart.total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`,
+        'Total': cart.total.toFixed(2),
         'Status': isAbandoned ? 'Abandonado' : 'Em Andamento',
         'Criado em': new Date(cart.created_at).toLocaleDateString("pt-BR"),
         'Atualizado em': new Date(cart.updated_at).toLocaleDateString("pt-BR")
       }
     })
 
-    // Criar CSV
+    // Criar HTML table para Excel
     const headers = Object.keys(exportData[0] || {})
-    const csvContent = [
-      headers.join('\t'),
-      ...exportData.map(row => headers.map(header => row[header as keyof typeof row]).join('\t'))
-    ].join('\n')
+    
+    let htmlContent = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">'
+    htmlContent += '<head>'
+    htmlContent += '<meta charset="UTF-8">'
+    htmlContent += '<style>table { border-collapse: collapse; } td, th { border: 1px solid #ddd; padding: 8px; text-align: left; }</style>'
+    htmlContent += '</head>'
+    htmlContent += '<body>'
+    htmlContent += '<table>'
+    
+    // Cabeçalhos
+    htmlContent += '<thead><tr>'
+    headers.forEach(header => {
+      htmlContent += `<th>${header}</th>`
+    })
+    htmlContent += '</tr></thead>'
+    
+    // Dados
+    htmlContent += '<tbody>'
+    exportData.forEach(row => {
+      htmlContent += '<tr>'
+      headers.forEach(header => {
+        const value = row[header as keyof typeof row]
+        htmlContent += `<td>${value}</td>`
+      })
+      htmlContent += '</tr>'
+    })
+    htmlContent += '</tbody>'
+    htmlContent += '</table>'
+    htmlContent += '</body>'
+    htmlContent += '</html>'
 
     // Criar BOM para UTF-8
     const BOM = '\uFEFF'
-    const blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8;' })
+    const blob = new Blob([BOM + htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8;' })
     const link = document.createElement('a')
     const url = URL.createObjectURL(blob)
     
