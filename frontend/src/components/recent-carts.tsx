@@ -13,6 +13,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
+import TablePagination from '@mui/material/TablePagination';
 import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
 import { styled } from '@mui/material/styles';
@@ -60,6 +61,8 @@ export function RecentCarts({
   const [recentCarts, setRecentCarts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [mounted, setMounted] = useState(false)
+  const [page, setPage] = useState(0)
+  const [rowsPerPage] = useState(20)
 
   useEffect(() => {
     setMounted(true)
@@ -117,7 +120,7 @@ export function RecentCarts({
         )
 
         if (isMounted) {
-          setRecentCarts(sortedCarts.slice(0, 10))
+          setRecentCarts(sortedCarts)
         }
       } catch (error) {
         console.error("Erro ao carregar carrinhos recentes:", error)
@@ -137,6 +140,20 @@ export function RecentCarts({
       isMounted = false;
     };
   }, [startDate, endDate, clientFilter, sellerFilter, abandonmentHours])
+
+  useEffect(() => {
+    setPage(0)
+  }, [startDate, endDate, clientFilter, sellerFilter])
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage)
+  }
+
+  const paginatedCarts = useMemo(() => {
+    const startIndex = page * rowsPerPage
+    const endIndex = startIndex + rowsPerPage
+    return recentCarts.slice(startIndex, endIndex)
+  }, [recentCarts, page, rowsPerPage])
 
   const getTimeAgo = useMemo(() => {
     if (!mounted) return () => "Carregando..."
@@ -292,6 +309,7 @@ export function RecentCarts({
             })}
           </Box>
         ) : (
+        <>
         <TableContainer sx={{ overflowX: 'auto' }}>
           <Table size="small">
             <TableHead>
@@ -310,7 +328,7 @@ export function RecentCarts({
               </TableRow>
             </TableHead>
             <TableBody>
-              {recentCarts.map((cart: ShoppingCart) => {
+              {paginatedCarts.map((cart: ShoppingCart) => {
                 const timeAgo = getTimeAgo(cart.updated_at)
                 return (
                   <TableRow key={cart.id}>
@@ -387,6 +405,17 @@ export function RecentCarts({
             </TableBody>
           </Table>
         </TableContainer>
+        <TablePagination
+          component="div"
+          count={recentCarts.length}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[20]}
+          labelRowsPerPage="Linhas por página:"
+          labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
+        />
+        </>
         )}
       </CardContent>
     </StyledCard>
