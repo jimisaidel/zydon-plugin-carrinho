@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -20,7 +21,7 @@ import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { getShoppingCartsRaw } from "../services/api"
-import { Schedule, Visibility } from '@mui/icons-material';
+import { Schedule, Visibility, FileDownload } from '@mui/icons-material';
 
 interface ShoppingCart {
   id: string
@@ -155,6 +156,51 @@ export function RecentCarts({
     return recentCarts.slice(startIndex, endIndex)
   }, [recentCarts, page, rowsPerPage])
 
+  const handleExportToExcel = () => {
+    // Preparar dados para exportação
+    const exportData = recentCarts.map((cart: ShoppingCart) => {
+      const now = new Date()
+      const updatedAt = new Date(cart.updated_at)
+      const hoursSinceUpdate = (now.getTime() - updatedAt.getTime()) / (1000 * 60 * 60)
+      const isAbandoned = hoursSinceUpdate >= abandonmentHours
+      const qtdSku = cart.items.length
+      const qtdItens = cart.items?.reduce((total: number, item: any) => total + item.quantity, 0) || 0
+
+      return {
+        'Nome do Usuário': cart.user_name || 'Usuário',
+        'Perfil': cart.user_profile || 'PARTNER',
+        'Nome do Parceiro': cart.partner_name || '-',
+        'Nome do Vendedor': cart.seller_name || '-',
+        'Qtd SKU': qtdSku,
+        'Qtd Itens': qtdItens,
+        'Total': `R$ ${cart.total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`,
+        'Status': isAbandoned ? 'Abandonado' : 'Em Andamento',
+        'Criado em': new Date(cart.created_at).toLocaleDateString("pt-BR"),
+        'Atualizado em': new Date(cart.updated_at).toLocaleDateString("pt-BR")
+      }
+    })
+
+    // Criar CSV
+    const headers = Object.keys(exportData[0] || {})
+    const csvContent = [
+      headers.join('\t'),
+      ...exportData.map(row => headers.map(header => row[header as keyof typeof row]).join('\t'))
+    ].join('\n')
+
+    // Criar BOM para UTF-8
+    const BOM = '\uFEFF'
+    const blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    const url = URL.createObjectURL(blob)
+    
+    link.setAttribute('href', url)
+    link.setAttribute('download', `carrinhos_${new Date().toISOString().split('T')[0]}.xls`)
+    link.style.visibility = 'hidden'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   const getTimeAgo = useMemo(() => {
     if (!mounted) return () => "Carregando..."
     
@@ -239,12 +285,26 @@ export function RecentCarts({
   return (
     <StyledCard>
       <CardContent sx={{ p: 2 }}>
-        <Typography variant="h6" sx={{ mb: 1 }}>
-          Carrinhos Recentes
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          Últimos carrinhos online
-        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+          <Box>
+            <Typography variant="h6">
+              Carrinhos Recentes
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Últimos carrinhos online
+            </Typography>
+          </Box>
+          <Button
+            variant="contained"
+            startIcon={<FileDownload />}
+            onClick={handleExportToExcel}
+            disabled={recentCarts.length === 0}
+            size="small"
+          >
+            Exportar XLS
+          </Button>
+        </Box>
+        <Box sx={{ mb: 2 }} />
         {isMobile ? (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {recentCarts.map((cart: ShoppingCart) => {
