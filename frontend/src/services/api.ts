@@ -842,7 +842,7 @@ export async function getShoppingCartsRaw() {
     const headers = getAuthHeaders();
     const perPage = 200;
     let page = 0;
-    let allItems: ShoppingCart[] = [];
+    const allItems: ShoppingCart[] = [];
     let hasMoreData = true;
     
     while (hasMoreData) {
@@ -851,17 +851,18 @@ export async function getShoppingCartsRaw() {
       const response = await fetch(url, {
         method: "GET",
         headers: headers,
-      })
+      });
       
       if (!response.ok) {
-        const errorText = await response.text()
-        throw new Error(`API retornou status ${response.status}: ${errorText}`)
+        const errorText = await response.text();
+        throw new Error(`API retornou status ${response.status}: ${errorText}`);
       }
 
-      const data = await response.json()
+      const data = await response.json();
       const items = data.items || [];
       
-      allItems = [...allItems, ...items];
+      
+      allItems.push(...items);
       
       // Verificar se ainda há mais dados
       hasMoreData = items.length === perPage;
