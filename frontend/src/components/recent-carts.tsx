@@ -400,6 +400,7 @@ export function RecentCarts({
           <Table size="small">
             <TableHead>
               <TableRow>
+                <TableCell>Ações</TableCell>
                 <TableCell>Nome do Usuário</TableCell>
                 <TableCell>Perfil</TableCell>
                 <TableCell>Nome do Parceiro</TableCell>
@@ -410,7 +411,6 @@ export function RecentCarts({
                 <TableCell>Status</TableCell>
                 <TableCell>Criado em</TableCell>
                 <TableCell>Atualizado em</TableCell>
-                <TableCell>Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -418,6 +418,16 @@ export function RecentCarts({
                 const timeAgo = getTimeAgo(cart.updated_at)
                 return (
                   <TableRow key={cart.id}>
+                    <TableCell>
+                      <Tooltip title="Abrir Detalhes do Carrinho">
+                        <IconButton 
+                          size="small"
+                          onClick={() => navigate(`/cart-details/${cart.id}`)}
+                        >
+                          <Visibility fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Avatar sx={{ width: 24, height: 24 }}>
@@ -474,16 +484,6 @@ export function RecentCarts({
                           {timeAgo}
                         </Typography>
                       </Box>
-                    </TableCell>
-                    <TableCell>
-                      <Tooltip title="Abrir Detalhes do Carrinho">
-                        <IconButton 
-                          size="small"
-                          onClick={() => navigate(`/cart-details/${cart.id}`)}
-                        >
-                          <Visibility fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
                     </TableCell>
                   </TableRow>
                 )
